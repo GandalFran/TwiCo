@@ -4,4 +4,4 @@
 `python3 setup.py install`
 
 ### Run
-`start`
+simply type `start`
