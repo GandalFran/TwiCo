@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright 2020 Luis Blazquez Miñambres (@luisblazquezm), Miguel Cabezas Puerto (@MiguelCabezasPuerto) and Francisco Pinto-Santos (@gandalfran)
+# Copyright 2020 Luis Blazquez Miñambres (@luisblazquezm), Miguel Cabezas Puerto (@MiguelCabezasPuerto), Óscar Sánchez Juanes (@oscarsanchezj) and Francisco Pinto-Santos (@gandalfran)
 # See LICENSE for details.
 
 import io
@@ -19,22 +19,21 @@ def read_requeriments_file(filename):
 
 
 setup(
-    name='example api',
+    name='SOA final project API',
     version='1.0',
     packages=find_packages(),
     url='https://github.com/GandalFran/soa-final',
     download_url='https://github.com/GandalFran/soa-final/archive/master.zip',
     license='GNU Affero General Public License v3',
-    author='Luis Blazquez Miñambres, Miguel Cabezas Puerto and Francisco Pinto-Santos',
-    author_email='luisblazquezm@usal.es, miguelcabezaspuerto@usal.es and franpintosantos@usal.es',
+    author='Luis Blazquez Miñambres, Miguel Cabezas Puerto, Óscar Sánchez Juanes and Francisco Pinto-Santos',
+    author_email='luisblazquezm@usal.es, miguelcabezaspuerto@usal.es, oscar.sanchez@usal.es and franpintosantos@usal.es',
     description='Flask RESTX API for SOA final project',
     long_description=readme(),
     long_description_content_type='text/markdown',
     install_requires=list(read_requeriments_file('requirements.txt')),
     entry_points={
         'console_scripts': [
-            'run=example.run:main',
-            'start=example.run:main'
+            'soa=soa.run:main'
         ],
     },
     include_package_data=True,
