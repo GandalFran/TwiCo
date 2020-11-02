@@ -46,7 +46,7 @@ class GetPerson(Resource):
             	'age': 19,
             	'weight': 97.45
             }
-                 
+            
             return person
 
         except:
