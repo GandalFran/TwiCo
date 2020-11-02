@@ -1,0 +1,60 @@
+{
+  "name": "soa-final-project-web-app-server",
+  "version": "1.0.0",
+  "description": "Web server developed for the final project of SOA in the Masters degree of Computer Science of USAL",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf ./build/*",
+    "lint": "tslint --fix ./src/**/*.ts --project tsconfig.json",
+    "build": "npm-run-all clean _build-ts",
+    "start": "node ./build/index.js",
+    "rebuild": "npm-run-all clean _build-ts start",
+    "nodemon": "nodemon --watch src -e ts --exec npm-run-all build start",
+    "_build-ts": "tsc --pretty --project tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GandalFran/soa-final.git"
+  },
+  "keywords": [
+    "SOA"
+  ],
+  "author": "Luis Blazquez Miñambres (@luisblazquezm)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/GandalFran/soa-final/issues"
+  },
+  "homepage": "https://github.com/GandalFran/soa-final#readme",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/compression": "^1.7.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cookie-session": "^2.0.37",
+    "@types/cors": "^2.8.8",
+    "@types/express": "^4.17.8",
+    "@types/express-session": "^1.17.0",
+    "@types/passport": "^1.0.4",
+    "@types/passport-google-oauth": "^1.0.41",
+    "@types/request": "^2.48.5",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "request": "^2.88.2"
+  }
+}

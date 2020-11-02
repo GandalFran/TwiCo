@@ -1,0 +1,21 @@
+{
+    "redirect": true,
+    "apiBaseUrl": "http://soa.servehttp.com:5000/soa/v1",
+	"whiteList": "config/whitelist.json",
+    "http": {
+        "port": 80,
+        "bind": "0.0.0.0"
+    },
+    "https": {
+        "port": 443,
+        "bind": "0.0.0.0",
+        "keyFile": "./certs/server.key",
+        "certFile": "./certs/server.crt",
+        "caFile": "./certs/server.ca-bundle"
+    },
+    "auth": {
+        "id": "706477281622-fc5smi1o8hhu3kjp94ttfkdbno22tv9d.apps.googleusercontent.com",
+        "secret": "MekxIl70WrvBkW7X5qCJj13F",
+        "callback": "https://soa.servehttp.com/auth/google/callback"
+    }
+}
