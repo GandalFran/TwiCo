@@ -68,7 +68,7 @@ initialize_app(app)
 CORS(app)
 
 def main():
-    separator_str = ''.join(map(str, ["=" for i in range(136)]))
+    separator_str = ''.join(map(str, ["=" for i in range(175)]))
     print(separator_str)
     print(f'Debug mode: {config.DEBUG_MODE}')
     print(f'Authors: {get_authors()}')
