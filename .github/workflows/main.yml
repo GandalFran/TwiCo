@@ -1,0 +1,18 @@
+name: deploy all
+
+on:
+  push:
+    branches: master
+
+jobs:
+  download: 
+    runs-on: [self-hosted, linux, x64]  
+    steps:  
+    - name: download new changes
+      uses: actions/checkout@v2
+  restart:
+    runs-on: [self-hosted, linux, x64]
+    needs: download
+    steps:
+    - name: restarting pm2 services
+      run: /usr/local/bin/pm2 restart all
