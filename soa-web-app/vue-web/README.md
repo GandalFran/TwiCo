@@ -1,4 +1,4 @@
-# soa-web
+# Web for SOA final project
 
 ## Project setup
 ```
@@ -22,3 +22,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
