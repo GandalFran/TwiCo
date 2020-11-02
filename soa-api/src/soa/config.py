@@ -3,9 +3,10 @@
 # Copyright 2020 Luis Blazquez Miñambres (@luisblazquezm), Miguel Cabezas Puerto (@MiguelCabezasPuerto), Óscar Sánchez Juanes (@oscarsanchezj) and Francisco Pinto-Santos (@gandalfran)
 # See LICENSE for details.
 
-PORT = 5000
-HOST = '0.0.0.0'
-URL_PREFIX = '/soa/v1'
+import os
 
-DEBUG_MODE = False
-BARCELONA_CKAN_TOKEN = '12552198a8992ac3b2129ebc803e29ac50515f383dfdc147abf39dd127050db1'
+PORT = os.getenv('PORT', 5000)
+HOST = os.getenv('HOST', '127.0.0.1')
+URL_PREFIX = os.getenv('URL_PREFIX', '/soa/v1')
+DEBUG_MODE = bool(os.getenv('DEBUG_MODE', 'False'))
+BARCELONA_CKAN_TOKEN = os.getenv('BARCELONA_CKAN_TOKEN', '')
