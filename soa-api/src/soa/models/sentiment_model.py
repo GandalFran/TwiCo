@@ -115,10 +115,3 @@ class SentimentAnalyzer:
             sentiment_result = "neutral"
 
         return {"sentiment": sentiment_result}
-
-"""
-if __name__ == '__main__':
-    st = SentimentAnalyzer()
-    sentiment = st.analyze('I am 😄 today')
-    print(sentiment)
-"""
