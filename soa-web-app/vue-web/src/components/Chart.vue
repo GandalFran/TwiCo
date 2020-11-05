@@ -1,24 +1,31 @@
 <template>
 	<div>
 		<p v-text="chartData"> </p>
-		<p v-text="chartDataProperty"> </p>
+		<p :v-show="isUpdated === true" v-text="'updated'"> </p>
 	</div>
 </template>
 
 <script>
 	export default {
 		name: 'Chart',
-		props: ['chartDataProperty'],
-		data () {
+		props: ['chartData'],
+		data: function () {
 			return {
-				chartData : 'hola',
-			}
+				isUpdated: false,
+			};
 		},
 		methods: {
-			updateData: function(data) {
-				console.log('xddd');
-				this.chartData = data
+			update: function () {
+				console.log('update')
+			},
+		},
+		watch: {
+			chartData: function (oldData, newData) {
+				var x = oldData;
+				x = newData;
+				x = true;
+				this.isUpdated = x;
 			}
-		}
+		},
 	}
 </script>
