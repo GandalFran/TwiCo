@@ -1,42 +1,68 @@
 <template>
   <div class="control-section">
-    <ejs-dashboardlayout id='dashboard_default' ref="dashboard" :cellSpacing="[10, 10]" :allowResizing='true' :resizableHandles="['e-south-east','e-east','e-west','e-north','e-south']" :columns="6">
-      <e-panels>
-        <e-panel :sizeX="1" :sizeY="1" :row="0" :col="0" content='<chart ref="chart1" :chartDataProperty="myData" > </chart>'> </e-panel>
-        <e-panel :sizeX="3" :sizeY="2" :row="0" :col="1" content='<home ref="home1"> </home>'></e-panel>
-        <e-panel :sizeX="1" :sizeY="3" :row="0" :col="4" :content="homeComponent"></e-panel>
-        <e-panel :sizeX="1" :sizeY="1" :row="1" :col="0" :content="homeComponent"></e-panel>
-        <e-panel :sizeX="2" :sizeY="1" :row="2" :col="0" :content="homeComponent"></e-panel>
-        <e-panel :sizeX="1" :sizeY="1" :row="2" :col="2" :content="homeComponent"></e-panel>  
-        <e-panel :sizeX="1" :sizeY="1" :row="2" :col="3" :content="homeComponent"></e-panel>  
-      </e-panels>
-    </ejs-dashboardlayout>
+     <grid-layout
+        :layout.sync="layout"
+        :col-num="12"
+        :row-height="30"
+        :is-draggable="true"
+        :is-resizable="true"
+        :is-mirrored="false"
+        :vertical-compact="true"
+        :margin="[10, 10]"
+        :use-css-transforms="true"
+    >
+
+        <grid-item v-for="item in layout"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+                   :key="item.i">
+            {{item.i}}
+        </grid-item>
+    </grid-layout>
+    <v-btn @click="doUpdate"> PUSH ME </v-btn>
   </div>
 </template>
 
 <script>
 import Home from "@/views/Home.vue";
 import Chart from "@/components/Chart.vue";
+import VueGridLayout from 'vue-grid-layout';
 
 export default {
   name: 'Dashboard',
-  mounted () {
-    this.$refs.chart1.updateData('hello');
-    this.$refs.panel2.content.updateData('hello');
-    this.$refs.panel3.content.updateData('hello');
-    this.$refs.panel4.content.updateData('hello');
-    this.$refs.panel5.content.updateData('hello');
-    this.$refs.panel6.content.updateData('hello');
-    this.$refs.panel7.content.updateData('hello');
+  components: {
+     GridLayout: VueGridLayout.GridLayout,
+     GridItem: VueGridLayout.GridItem
+  },
+  data () {
+    layout: [
+          {"x":0,"y":0,"w":2,"h":2,"i":"0"},
+          {"x":2,"y":0,"w":2,"h":4,"i":"1"},
+          {"x":4,"y":0,"w":2,"h":5,"i":"2"},
+          {"x":6,"y":0,"w":2,"h":3,"i":"3"},
+          {"x":8,"y":0,"w":2,"h":3,"i":"4"},
+          {"x":10,"y":0,"w":2,"h":3,"i":"5"},
+          {"x":0,"y":5,"w":2,"h":5,"i":"6"},
+          {"x":2,"y":5,"w":2,"h":5,"i":"7"},
+          {"x":4,"y":5,"w":2,"h":5,"i":"8"},
+          {"x":6,"y":3,"w":2,"h":4,"i":"9"},
+          {"x":8,"y":4,"w":2,"h":4,"i":"10"},
+          {"x":10,"y":4,"w":2,"h":4,"i":"11"},
+          {"x":0,"y":10,"w":2,"h":5,"i":"12"},
+          {"x":2,"y":10,"w":2,"h":5,"i":"13"},
+          {"x":4,"y":8,"w":2,"h":4,"i":"14"},
+          {"x":6,"y":8,"w":2,"h":4,"i":"15"},
+          {"x":8,"y":10,"w":2,"h":5,"i":"16"},
+          {"x":10,"y":4,"w":2,"h":2,"i":"17"},
+          {"x":0,"y":9,"w":2,"h":3,"i":"18"},
+          {"x":2,"y":6,"w":2,"h":2,"i":"19"}
+      ],
   },
   methods: {
-    homeComponent () {
-      return { template: Chart};
-    },
-    homeComponent2 () {
-      return { template: Home};
-    },
-    myData () {
+    doUpdate () {
       return 'asdfafds'   
     }
   }
