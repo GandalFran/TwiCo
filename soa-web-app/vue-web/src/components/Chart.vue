@@ -1,7 +1,14 @@
 <template>
 	<div>
-		<p v-text="chartData"> </p>
-		<p :v-show="isUpdated === true" v-text="'updated'"> </p>
+		<v-progress-circular
+              v-show="dataAvailable === false"
+              class="circle-loading"
+              indeterminate
+              :size="300"
+              :width="20"
+              color="#4DCCBD"
+            />
+		<p v-show="dataAvailable === true" v-text="processedData"> </p>
 	</div>
 </template>
 
@@ -15,17 +22,28 @@
 			};
 		},
 		methods: {
-			update: function () {
-				console.log('update')
+			parseData: function (data) {
+				if(data === null || data === undefined){
+					return null;
+				}
+				return data.message;
 			},
 		},
-		watch: {
-			chartData: function (oldData, newData) {
-				var x = oldData;
-				x = newData;
-				x = true;
-				this.isUpdated = x;
+		computed: {
+			dataAvailable: function() {
+				return (this.chartData !== null && this.chartData !== undefined);
+			},
+			processedData: function () {
+				return this.parseData(this.chartData);
 			}
 		},
 	}
 </script>
+
+<style>
+	.circle-loading {
+		display: block;
+		width: 100px;
+		margin: 0 auto;
+	}
+</style>
