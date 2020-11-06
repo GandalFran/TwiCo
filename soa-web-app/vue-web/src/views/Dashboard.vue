@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="theBackground">
      <grid-layout
         :layout.sync="layout"
         :col-num="4"
@@ -47,7 +47,13 @@ export default {
   },
   methods: {
     doRequest () {
-      return {message: 'holawo'};
+      let visits = 10;
+      let data = [];
+      for (let i = 1; i < 366; i++) {
+        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+        data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
+      }
+      return data;
     }
   },
   created: function() {
@@ -56,3 +62,10 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.theBackground {
+  background: #66ccff
+}
+</style>
