@@ -15,15 +15,15 @@ jobs:
     needs: download
     steps:  
     - name: build vue web
-      run: cd soa-web-app/vue-web; npm run build
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm run build
     - name: copy web to final location
-      run: mv soa-web-app/vue-web/dist/* soa-web-app/node-server/public/
+      run: mv /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web/dist/* /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/static/
   build_web_server:
     runs-on: [self-hosted, linux, x64]  
     needs: download
     steps:  
     - name: build vue web
-      run: cd soa-web-app/node-server; npm run build
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server; npm run build
   restart:
     runs-on: [self-hosted, linux, x64]
     needs: [build_web, build_web_server]
