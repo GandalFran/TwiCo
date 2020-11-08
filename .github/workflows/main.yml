@@ -10,9 +10,21 @@ jobs:
     steps:  
     - name: download new changes
       uses: actions/checkout@v2
+  build_web:
+    runs-on: [self-hosted, linux, x64]  
+    steps:  
+    - name: build vue web
+      uses: cd soa-web-app/vue-web; npm run build
+    - name: copy web to final location
+      uses: mv soa-web-app/vue-web/dist soa-web-app/node-server
+  build_web_server:
+    runs-on: [self-hosted, linux, x64]  
+    steps:  
+    - name: build vue web
+      uses: cd soa-web-app/node-server; npm run build
   restart:
     runs-on: [self-hosted, linux, x64]
-    needs: download
+    needs: [download, build_web, build_web_server]
     steps:
     - name: restarting pm2 services
       run: /usr/local/bin/pm2 restart all
