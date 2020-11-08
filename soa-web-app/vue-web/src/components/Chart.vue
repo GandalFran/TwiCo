@@ -9,6 +9,7 @@
 			color="#4DCCBD"
 			/>
 		<div v-show="dataAvailable === true" ref="chartdiv"> </div>
+		<div v-show="dataAvailable === true" v-text="chartData"> </div>
 	</div>
 </template>
 
