@@ -9,9 +9,9 @@
     "https": {
         "port": 443,
         "bind": "0.0.0.0",
-        "keyFile": "../certs/server.key",
-        "certFile": "../certs/server.crt",
-        "caFile": "../certs/server.ca-bundle"
+        "keyFile": "certs/server.key",
+        "certFile": "certs/server.crt",
+        "caFile": "certs/server.ca-bundle"
     },
     "auth": {
         "id": "706477281622-fc5smi1o8hhu3kjp94ttfkdbno22tv9d.apps.googleusercontent.com",
