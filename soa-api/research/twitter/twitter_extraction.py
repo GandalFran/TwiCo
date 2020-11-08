@@ -6,6 +6,7 @@
 import tweepy
 import requests
 import re
+import json
 
 from twitter_config import *
 from tweepy import OAuthHandler
@@ -294,9 +295,10 @@ class TwitterExtraction:
         """
         return obj.coordinates
 
-"""
 if __name__ == '__main__':
     tw = TwitterExtraction()
-    results = tw.get_tweets_multiple_query(query=["covid", "cena"], include_both=True)
+    results = tw.get_tweets_multiple_query(query=["covid", "barcelona"], include_both=True)
+    
+    with open('data.json', 'w') as outfile:
+        json.dump(results, outfile)
     print(results)
-"""

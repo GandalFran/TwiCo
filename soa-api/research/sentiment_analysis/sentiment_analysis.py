@@ -78,7 +78,7 @@ class SentimentAnalyzer:
 
         return text
 
-    def analyze(self, text: str, clean_text: bool = False) -> str:
+    def analyze(self, text: str, clean_text: bool = False) -> Dict:
         """Sentiment analyzer of text
         
         Arguments:
@@ -114,7 +114,7 @@ class SentimentAnalyzer:
         else: 
             sentiment_result = "neutral"
 
-        return sentiment_result
+        return {"sentiment": sentiment_result}
 
 """
 if __name__ == '__main__':

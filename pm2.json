@@ -14,6 +14,13 @@
         "DEBUG_MODE": false,
         "BARCELONA_CKAN_TOKEN": "12552198a8992ac3b2129ebc803e29ac50515f383dfdc147abf39dd127050db1"
       }
+    },
+    {
+      "name": "soa-web-application",
+      "cwd": "/opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/build",
+      "script": "index.js",
+      "out_file": "/var/log/coapps_web.log",
+      "error_file": "/var/log/coapps_web.log"
     }
   ]
 }
