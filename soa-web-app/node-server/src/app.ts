@@ -43,7 +43,7 @@ export class Application {
 
     /** Initializes the express HTTP and HTTPS servers. */
     public start() {
-        /*if(Config.getInstance().redirect === true){
+        if(Config.getInstance().redirect === true){
             // redirect to https
             HTTP.createServer(function(request, response){
                 response.writeHead(301, { Location: 'https://' + request.headers.host + request.url });
@@ -53,14 +53,14 @@ export class Application {
             }).listen(Config.getInstance().http.port, Config.getInstance().http.bind, () => {
                 log(`[HTTP] Application listening on http://${Config.getInstance().http.bind}:${Config.getInstance().http.port}`);
             });
-        }else{*/
+        }else{
             // register http server
             HTTP.createServer(this.application).on("error", (e: any) => {                
                 log(`[HTTP] ${e}`);
             }).listen(Config.getInstance().http.port, Config.getInstance().http.bind, () => {
                 log(`[HTTP] Application listening on http://${Config.getInstance().http.bind}:${Config.getInstance().http.port}`);
             });
-        //}
+        }
 
         if(Config.getInstance().https.caFile){
             // https server
@@ -118,14 +118,14 @@ export class Application {
     /** Ensure user is logged in when accessing critical endpoints. */
     private configureRoutes(){
         
-        //this.application.use((request, response, next) => {
-        //    if (!request.session.user && request.path.match(/\/data\/.*/)) {
-        //        response.status(STATUS_FORBIDDEN);
-        //        response.send();
-        //    }else{
-        //        next();
-        //    }
-        //});
+        this.application.use((request, response, next) => {
+            if (!request.session.user && request.path.match(/\/data\/.*/)) {
+                response.status(STATUS_FORBIDDEN);
+                response.send();
+            }else{
+                next();
+            }
+        });
     }
 
     /** Register controllers. */
