@@ -64,7 +64,6 @@ export class Application {
 
         if(Config.getInstance().https.caFile){
             // https server
-            console.log(Config.getInstance().https.caFile)
             HTTPS.createServer({
                 ca: Fs.readFileSync(Path.resolve(__dirname, "..", "..", Config.getInstance().https.caFile)),
                 key: Fs.readFileSync(Path.resolve(__dirname, "..", "..", Config.getInstance().https.keyFile)),
