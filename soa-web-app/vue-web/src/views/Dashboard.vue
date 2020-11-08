@@ -19,7 +19,8 @@
                    :h="item.h"
                    :i="item.i"
                    :key="item.i">
-            <chart :chartData="chartData" > </chart>
+            <chart v-if="item.chartType == 'covid'" :chartData="covidData" > </chart>
+            <chart v-if="item.chartType == 'twitter'" :chartData="twitterData" > </chart>
         </grid-item>
     </grid-layout>
   </div>
@@ -40,10 +41,11 @@ export default {
   data () {
     return{
       baseUrl: "https://soa.servehttp.com",
-      chartData: null,
+      covidData: null,
+      twitterData: null,
       layout: [
-            {"x":0,"y":0,"w":2,"h":4,"i":"0"},
-            {"x":2,"y":0,"w":2,"h":8,"i":"1"},
+            {"x":0,"y":0,"w":2,"h":4,"i":"0", "chartType": "covid"},
+            {"x":2,"y":0,"w":2,"h":8,"i":"1", "chartType": "twitter"},
       ],
     }
   },
@@ -60,12 +62,23 @@ export default {
           }
         }).catch(e => { console.log(e); });
     },
-    reloadDashBoard () {
+    reloadCovidData(){
       const uri = this.baseUrl + "/data/covid";
       axios.post(uri, {}).then(response => {
           const data = response.data;
-          this.chartData = data;
+          this.covidData = data;
       }).catch(e => { console.log(e); });
+    },
+    reloadTwitterData(){
+      const uri = this.baseUrl + "/data/twitter";
+      axios.post(uri, {}).then(response => {
+          const data = response.data;
+          this.twitterData = data;
+      }).catch(e => { console.log(e); });
+    },
+    reloadDashBoard () {
+      this.reloadCovidData();
+      this.reloadTwitterData();
     },
   },
   created: function() {
