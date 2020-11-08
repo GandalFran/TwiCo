@@ -18,8 +18,18 @@ export class ApiSOADataModel {
     * @return COVID information.
     */
     public async covid(): Promise<Array<any>>{
-    	const uri = `${Config.getInstance().apiBaseUrl}/covid`;
-    	const rawData = await this.doRequest(uri, {});
+    	const uri = `${Config.getInstance().apiBaseUrl}/covid/barcelona`;
+    	const rawData = await this.doRequest(uri);
+        return Promise.resolve(rawData);
+    }
+
+    /** 
+    * Retrieves COVID information.
+    * @return COVID information.
+    */
+    public async twitter(): Promise<Array<any>>{
+        const uri = `${Config.getInstance().apiBaseUrl}/twitter/tweets`;
+        const rawData = await this.doRequest(uri);
         return Promise.resolve(rawData);
     }
 
@@ -29,12 +39,14 @@ export class ApiSOADataModel {
     * @param requestBody - the request's body
     * @return the body of the response if success and the error in other case.
     */
-    private async doRequest(uri: string, requestBody: any): Promise<any>{
+    private async doRequest(uri: string): Promise<any>{
         return new Promise<string>(function(resolve, reject) {
-            Request.post(uri, requestBody, function(error:any,response:any,body:any){
+            Request.get(uri, function(error:any,response:any,body:any){
             	if(error){
+                    console.log(error)
             		reject(error);
             	}else{
+                    console.log(body)
                 	resolve(body);
             	}
             });

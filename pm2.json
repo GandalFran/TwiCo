@@ -17,6 +17,7 @@
     },
     {
       "name": "soa-web-application",
+      "interpreter": "/usr/bin/node",
       "cwd": "/opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/build",
       "script": "index.js",
       "out_file": "/var/log/coapps_web.log",
