@@ -43,11 +43,14 @@ export class ApiSOADataController{
             response.json({'error': 'unkown error'});
             return;
         }
-        
-        // return status
-        response.status(STATUS_OK);
-        response.contentType(CONTENT_APPLICATION_JSON);
-        response.json(result);
+
+        if(result === null){
+            response.status(STATUS_INTERNAL_SERVER_ERROR);
+        }else{
+            response.status(STATUS_OK);
+            response.contentType(CONTENT_APPLICATION_JSON);
+            response.json(result);
+        }
     }
 
     /** 
@@ -67,10 +70,13 @@ export class ApiSOADataController{
             response.json({'error': 'unkown error'});
             return;
         }
-        
-        // return status
-        response.status(STATUS_OK);
-        response.contentType(CONTENT_APPLICATION_JSON);
-        response.json(result);
+
+        if(result === null){
+            response.status(STATUS_INTERNAL_SERVER_ERROR);
+        }else{
+            response.status(STATUS_OK);
+            response.contentType(CONTENT_APPLICATION_JSON);
+            response.json(result);
+        }
     }
 }

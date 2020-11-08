@@ -5,8 +5,8 @@
       "cwd": "/opt/soa-final/_work/soa-final/soa-final/soa-api/src",
       "interpreter": "/bin/bash",
       "script": "launch.bash",
-      "out_file": "/var/log/coapps_api.log",
-      "error_file": "/var/log/coapps_api.log",
+      "out_file": "/var/log/soa_api.log",
+      "error_file": "/var/log/soa_api.log",
       "env": {
         "PORT": 5000,
         "HOST": "0.0.0.0",
@@ -20,8 +20,8 @@
       "interpreter": "/usr/bin/node",
       "cwd": "/opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/build",
       "script": "index.js",
-      "out_file": "/var/log/coapps_web.log",
-      "error_file": "/var/log/coapps_web.log"
+      "out_file": "/var/log/soa_web.log",
+      "error_file": "/var/log/soa_web.log"
     }
   ]
 }

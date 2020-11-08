@@ -43,8 +43,7 @@ export class ApiSOADataModel {
         return new Promise<string>(function(resolve, reject) {
             Request.get(uri, function(error:any,response:any,body:any){
             	if(error){
-                    console.log(error)
-            		reject(error);
+            		reject(null);
             	}else{
                     console.log(body)
                 	resolve(body);
