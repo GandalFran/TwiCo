@@ -7,7 +7,7 @@ Final project for the SOA subject of the Computer Science Master's degree at USA
 	- vue-web: web develoved in Vue.js.
 	- node-server: application server, coded in node.js and TypeScript.
 
-<img src="https://github.com/GandalFran/soa-final/blob/master/soa-web-app/vue-web/public/architecture.png" align="center">
+<img src="https://github.com/GandalFran/soa-final/blob/master/soa-web-app/vue-web/public/img/architecture.png" align="center">
 
 
 ## Current deployments
