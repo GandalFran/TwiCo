@@ -270,7 +270,7 @@ class TwitterExtraction:
         Returns:
             str -- tweet´s publishing date and time
         """
-        return obj.created_at.strftime('%Y-%m-%d, %H:%M:%S')
+        return obj.created_at.strftime('%Y-%m-%dT%H:%M:%S')
 
     def extract_geolocation(self, obj: dict) -> str:
         """Extracts country and city information from tweet object status
