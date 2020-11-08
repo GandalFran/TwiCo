@@ -34,8 +34,7 @@ export default {
   name: "Home",
   data() {
     return {
-      isLoggedIn: false,
-      baseUrl: "http://soa.servehttp.com",
+      baseUrl: "https://soa.servehttp.com",
       particles: {
         id: "particles-instance-" + Math.floor(Math.random() * 5000),
         color: "#ffffff",
@@ -88,19 +87,13 @@ export default {
       window.location = this.baseUrl + "/auth/google";
     },
     updateIsLoggedIn() {
-      const uri = this.baseUrl + "/novatrends/auth/check";
-      axios
-        .post(uri, {})
-        .then(response => {
-          this.isLoggedIn = response.data.auth;
-          if (this.isLoggedIn) {
+      const uri = this.baseUrl + "/auth/check";
+      axios.post(uri, {}).then(response => {
+          const isLoggedIn = response.data.auth;
+          if (isLoggedIn) {
             this.$router.push("dashboard");
           }
-        })
-        .catch(e => {
-          console.log(e);
-          this.isLoggedIn = false;
-        });
+        }).catch(e => { console.log(e); });
     },
 
     initParticleJS(

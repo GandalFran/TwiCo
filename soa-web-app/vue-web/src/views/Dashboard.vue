@@ -4,7 +4,7 @@
         :layout.sync="layout"
         :col-num="4"
         :row-height="30"
-        :is-draggable="true"
+        :is-draggable="false"
         :is-resizable="true"
         :is-mirrored="false"
         :vertical-compact="true"
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Chart from "@/components/Chart.vue";
 import VueGridLayout from 'vue-grid-layout';
 
@@ -38,6 +39,7 @@ export default {
   },
   data () {
     return{
+      baseUrl: "https://soa.servehttp.com",
       chartData: null,
       layout: [
             {"x":0,"y":0,"w":2,"h":4,"i":"0"},
@@ -46,19 +48,29 @@ export default {
     }
   },
   methods: {
-    doRequest () {
-      let visits = 10;
-      let data = [];
-      for (let i = 1; i < 366; i++) {
-        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-        data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-      }
-      return data;
-    }
+    logout() {
+      window.location = this.baseUrl + "/auth/google/logout";
+    },
+    checkAuth(){
+      const uri = this.baseUrl + "/auth/check";
+      axios.post(uri, {}).then(response => {
+          const isLoggedIn = response.data.auth;
+          if(isLoggedIn === false){
+            this.$router.push('forbidden');
+          }
+        }).catch(e => { console.log(e); });
+    },
+    reloadDashBoard () {
+      const uri = this.baseUrl + "/data/covid";
+      axios.post(uri, {}).then(response => {
+          const data = response.data;
+          this.chartData = data;
+      }).catch(e => { console.log(e); });
+    },
   },
   created: function() {
-    const response = this.doRequest();
-    this.chartData = response;
+    this.checkAuth();
+    this.reloadDashBoard();
   }
 }
 </script>

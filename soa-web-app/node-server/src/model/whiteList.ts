@@ -17,10 +17,6 @@ export class WhiteList {
     /** Whitelitsted users emails array. */
     public static dataPath: string = Path.resolve(__dirname, "..", "..", "..", Config.getInstance().whiteList);
 
-    /** Loads whitelist infomation from whitelist file. */
-    constructor(){
-    	WhiteList.whiteList = WhiteList.load();
-    }
 
     /** 
     * Load the email whitelist from file.
@@ -42,6 +38,11 @@ export class WhiteList {
     * @return true if the email is in whitelist and false in other case.
     */
     public static isInWhitelist(email: string): boolean{
+        if( null === WhiteList.whiteList){
+            console.log(WhiteList.dataPath);
+            WhiteList.whiteList = WhiteList.load();
+        }
+
         for(const e of WhiteList.whiteList){
             if(e === email){
                 return true;
