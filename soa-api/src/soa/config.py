@@ -27,3 +27,9 @@ SEARCH_TWEETS_URI = 'https://api.twitter.com/1.1/search/tweets.json'
 
 DEFAULT_NUM_TWEETS_EXTRACTED = 300
 DEFAULT_TWEETS_LANGUAGE = 'en'
+
+##### Geolocation and Geocodification variables
+# Variables that contains the credentials to access LocationIQ API
+LOCATIONIQ_TOKEN = "pk.3086d0188b2fa4e26bcec2436d145356"
+#Variables that contains the credentials to access MapBox API
+MAPBOX_TOKEN = "pk.eyJ1IjoibWlndWVsY2FiZXphc3B1ZXJ0byIsImEiOiJja2g5NG80Nm4wcXVpMnducWZyeDh5Y2xrIn0.X-9lAGXU4ZBiNr_1uj8udQ"

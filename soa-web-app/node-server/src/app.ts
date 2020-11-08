@@ -117,6 +117,7 @@ export class Application {
 
     /** Ensure user is logged in when accessing critical endpoints. */
     private configureRoutes(){
+        
         this.application.use((request, response, next) => {
             if (!request.session.user && request.path.match(/\/data\/.*/)) {
                 response.status(STATUS_FORBIDDEN);
