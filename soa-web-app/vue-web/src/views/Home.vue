@@ -1,11 +1,30 @@
 <template>
-  <div :id="particles.id" class="particles-js theBackground">
-    <h1>Twico analysis service</h1>
-    <img src="architecture.png" class="architecture" width="1000px" />
-    <v-btn x-large block class="theButton" @click="login">
-      Go to dashboard
-    </v-btn>
-  </div>
+  <v-container id="upgrade" fluid tag="section">
+    <div :id="particles.id" class="particles-js theBackground text-center">
+      <v-row align="center" justify="center">
+        <v-col cols="12" md="8">
+          <h1>Twico analysis service</h1>
+        </v-col>
+      </v-row>
+      <v-row align="center" justify="center">
+        <v-col cols="12" md="8">
+          <v-img
+            lazy-src="architecture.png"
+            src="architecture.png"
+            class="architecture"
+            contain
+          />
+        </v-col>
+      </v-row>
+      <v-row align="center" justify="center">
+        <v-col cols="12" md="8">
+          <v-btn x-large rounded class="theButton" @click="login">
+            Go to dashboard
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -236,7 +255,7 @@ export default {
   height: 30%;
   margin: auto;
 }
-.theButton {
+.theButton2 {
   position: absolute;
   top: 1;
   bottom: 0;
@@ -246,7 +265,7 @@ export default {
   height: 30%;
   margin: auto;
 }
-.title {
+.title2 {
   position: absolute;
   top: 1;
   bottom: 0;
@@ -265,37 +284,5 @@ h1 {
   font-variant: normal;
   font-weight: 700;
   line-height: 26.4px;
-}
-h3 {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 700;
-  line-height: 15.4px;
-}
-p {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-blockquote {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 21px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 30px;
-}
-pre {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 13px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 18.5714px;
 }
 </style>
