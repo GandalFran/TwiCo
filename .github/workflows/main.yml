@@ -15,7 +15,7 @@ jobs:
     needs: download
     steps:  
     - name: install dependencies
-      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm run install
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm install
     - name: build vue web
       run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm run build
     - name: copy web to final location
@@ -25,7 +25,7 @@ jobs:
     needs: download
     steps:  
     - name: install dependencies
-      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server; npm run install
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server; npm install
     - name: build node server
       run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server; npm run build
   restart:
