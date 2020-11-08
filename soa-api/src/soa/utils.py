@@ -17,7 +17,7 @@ def handle404error(ns, message):
     Function to handle a 404 (not found) error.
     """
 
-    return ns.abort(404, status=message, statusCode="400")
+    return ns.abort(404, status=message, statusCode="404")
 
 
 def handle500error(ns):
