@@ -19,7 +19,7 @@ jobs:
     - name: build vue web
       run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm run build
     - name: copy web to final location
-      run: mv /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web/dist/* /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/static/
+      run: cp -R /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web/dist/* /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/static/
   build_web_server:
     runs-on: [self-hosted, linux, x64]  
     needs: download
