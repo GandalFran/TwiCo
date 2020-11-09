@@ -6,7 +6,8 @@
 To install depencies run `npm install`
 
 ### configure
-To configure, modify a file called `config.json` in the config directory.
+- To configure, modify a file called `config.json` in the config directory.
+- To add people to whitelist add their USAL email to the `whitelist.json` in the config directory.
 
 ### run
 To run the server first compile the project with `npm run build` and then start the server with `npm run start`.

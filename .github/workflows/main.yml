@@ -12,19 +12,27 @@ jobs:
       uses: actions/checkout@v2
   build_web:
     runs-on: [self-hosted, linux, x64]  
+    needs: download
     steps:  
+    - name: install dependencies
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm install
     - name: build vue web
-      uses: cd soa-web-app/vue-web; npm run build
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm run build
+    - name: create final location directory
+      run: mkdir /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/static
     - name: copy web to final location
-      uses: mv soa-web-app/vue-web/dist soa-web-app/node-server
+      run: mv /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web/dist/* /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/static/
   build_web_server:
     runs-on: [self-hosted, linux, x64]  
+    needs: download
     steps:  
-    - name: build vue web
-      uses: cd soa-web-app/node-server; npm run build
+    - name: install dependencies
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server; npm install
+    - name: build node server
+      run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server; npm run build
   restart:
     runs-on: [self-hosted, linux, x64]
-    needs: [download, build_web, build_web_server]
+    needs: [build_web, build_web_server]
     steps:
     - name: restarting pm2 services
       run: /usr/local/bin/pm2 restart all

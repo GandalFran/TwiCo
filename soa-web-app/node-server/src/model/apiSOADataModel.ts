@@ -18,8 +18,29 @@ export class ApiSOADataModel {
     * @return COVID information.
     */
     public async covid(): Promise<Array<any>>{
-    	const uri = `${Config.getInstance().apiBaseUrl}/covid`;
-    	const rawData = await this.doRequest(uri, {});
+        // build one month ago date 
+        const d = new Date();
+        d.setMonth(d.getMonth() - 1);
+        const date_str = d.toISOString().split('T')[0];
+        // build uri and request data
+    	const uri = `${Config.getInstance().apiBaseUrl}/covid/barcelona?from_date=${date_str}`;
+    	var rawData = await this.doRequest(uri);
+        if(rawData !== null){
+            rawData = JSON.parse(rawData);
+        }
+        return Promise.resolve(rawData);
+    }
+
+    /** 
+    * Retrieves twitter information.
+    * @return twitter information.
+    */
+    public async twitter(): Promise<Array<any>>{
+        const uri = `${Config.getInstance().apiBaseUrl}/twitter/tweets?q=covid`;
+        var rawData = await this.doRequest(uri);
+        if(rawData !== null){
+            rawData = JSON.parse(rawData);
+        }
         return Promise.resolve(rawData);
     }
 
@@ -29,11 +50,11 @@ export class ApiSOADataModel {
     * @param requestBody - the request's body
     * @return the body of the response if success and the error in other case.
     */
-    private async doRequest(uri: string, requestBody: any): Promise<any>{
+    private async doRequest(uri: string): Promise<any>{
         return new Promise<string>(function(resolve, reject) {
-            Request.post(uri, requestBody, function(error:any,response:any,body:any){
+            Request.get(uri, function(error:any,response:any,body:any){
             	if(error){
-            		reject(error);
+            		reject(null);
             	}else{
                 	resolve(body);
             	}

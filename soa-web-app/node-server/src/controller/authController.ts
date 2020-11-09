@@ -48,7 +48,7 @@ export class AuthController{
                 email: user.profile.emails[0].value
             }
             request.session.token = user.token;
-            response.redirect('/#/search');
+            response.redirect('/#/dashboard');
         }else{
             response.redirect('/#/forbidden');
         }

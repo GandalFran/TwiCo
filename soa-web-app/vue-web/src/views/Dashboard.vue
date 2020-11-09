@@ -4,7 +4,7 @@
         :layout.sync="layout"
         :col-num="4"
         :row-height="30"
-        :is-draggable="true"
+        :is-draggable="false"
         :is-resizable="true"
         :is-mirrored="false"
         :vertical-compact="true"
@@ -19,13 +19,15 @@
                    :h="item.h"
                    :i="item.i"
                    :key="item.i">
-            <chart :chartData="chartData" > </chart>
+            <chart v-if="item.chartType == 'covid'" :chartData="covidData" > </chart>
+            <chart v-if="item.chartType == 'twitter'" :chartData="twitterData" > </chart>
         </grid-item>
     </grid-layout>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import Chart from "@/components/Chart.vue";
 import VueGridLayout from 'vue-grid-layout';
 
@@ -38,27 +40,50 @@ export default {
   },
   data () {
     return{
-      chartData: null,
+      baseUrl: "https://soa.servehttp.com",
+      covidData: null,
+      twitterData: null,
       layout: [
-            {"x":0,"y":0,"w":2,"h":4,"i":"0"},
-            {"x":2,"y":0,"w":2,"h":8,"i":"1"},
+            {"x":0,"y":0,"w":2,"h":4,"i":"0", "chartType": "covid"},
+            {"x":2,"y":0,"w":2,"h":8,"i":"1", "chartType": "twitter"},
       ],
     }
   },
   methods: {
-    doRequest () {
-      let visits = 10;
-      let data = [];
-      for (let i = 1; i < 366; i++) {
-        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-        data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-      }
-      return data;
-    }
+    logout() {
+      window.location = this.baseUrl + "/auth/google/logout";
+    },
+    checkAuth(){
+      const uri = this.baseUrl + "/auth/check";
+      axios.post(uri, {}).then(response => {
+          const isLoggedIn = response.data.auth;
+          if(isLoggedIn === false){
+            this.$router.push('forbidden');
+          }
+        }).catch(e => { console.log(e); });
+    },
+    reloadCovidData(){
+      const uri = this.baseUrl + "/data/covid";
+      axios.post(uri, {}).then(response => {
+          const data = response.data;
+          this.covidData = data;
+      }).catch(e => { console.log(e); });
+    },
+    reloadTwitterData(){
+      const uri = this.baseUrl + "/data/twitter";
+      axios.post(uri, {}).then(response => {
+          const data = response.data;
+          this.twitterData = data;
+      }).catch(e => { console.log(e); });
+    },
+    reloadDashBoard () {
+      this.reloadCovidData();
+      this.reloadTwitterData();
+    },
   },
   created: function() {
-    const response = this.doRequest();
-    this.chartData = response;
+    this.checkAuth();
+    this.reloadDashBoard();
   }
 }
 </script>

@@ -23,6 +23,7 @@ export class ApiSOADataController{
     */
     public registerController(application: Express.Express): any {
         application.post("/data/covid", this.covid.bind(this));
+        application.post("/data/twitter", this.twitter.bind(this));
     }
 
     /** 
@@ -42,10 +43,40 @@ export class ApiSOADataController{
             response.json({'error': 'unkown error'});
             return;
         }
-        
-        // return status
-        response.status(STATUS_OK);
-        response.contentType(CONTENT_APPLICATION_JSON);
-        response.json(result);
+
+        if(result === null){
+            response.status(STATUS_INTERNAL_SERVER_ERROR);
+        }else{
+            response.status(STATUS_OK);
+            response.contentType(CONTENT_APPLICATION_JSON);
+            response.json(result);
+        }
+    }
+
+    /** 
+    * Retrieves the twitter data.
+    * @param request - the express request.
+    * @param response - the express response.
+    */
+    public async twitter(request: Express.Request, response: Express.Response) {
+
+        // retrieve data
+        let result = null;
+        try{
+            result = await ApiSOADataController.apiSOADataModel.twitter();
+        }catch(e){
+            response.status(STATUS_INTERNAL_SERVER_ERROR);
+            response.contentType(CONTENT_APPLICATION_JSON);
+            response.json({'error': 'unkown error'});
+            return;
+        }
+
+        if(result === null){
+            response.status(STATUS_INTERNAL_SERVER_ERROR);
+        }else{
+            response.status(STATUS_OK);
+            response.contentType(CONTENT_APPLICATION_JSON);
+            response.json(result);
+        }
     }
 }

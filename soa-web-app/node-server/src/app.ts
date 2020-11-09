@@ -65,9 +65,9 @@ export class Application {
         if(Config.getInstance().https.caFile){
             // https server
             HTTPS.createServer({
-                ca: Fs.readFileSync(Config.getInstance().https.caFile),
-                key: Fs.readFileSync(Config.getInstance().https.keyFile),
-                cert: Fs.readFileSync(Config.getInstance().https.certFile)
+                ca: Fs.readFileSync(Path.resolve(__dirname, "..", "..", Config.getInstance().https.caFile)),
+                key: Fs.readFileSync(Path.resolve(__dirname, "..", "..", Config.getInstance().https.keyFile)),
+                cert: Fs.readFileSync(Path.resolve(__dirname, "..", "..", Config.getInstance().https.certFile))
             }, this.application).on("error", (e: any) => {                
                 log(`[HTTPS] ${e}`);
             }).listen(Config.getInstance().https.port, Config.getInstance().https.bind, () => {
@@ -117,6 +117,7 @@ export class Application {
 
     /** Ensure user is logged in when accessing critical endpoints. */
     private configureRoutes(){
+        
         this.application.use((request, response, next) => {
             if (!request.session.user && request.path.match(/\/data\/.*/)) {
                 response.status(STATUS_FORBIDDEN);

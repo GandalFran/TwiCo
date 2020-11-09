@@ -9,8 +9,8 @@
       <v-row align="center" justify="center">
         <v-col cols="12" md="8">
           <v-img
-            lazy-src="architecture.png"
-            src="architecture.png"
+            lazy-src="img/architecture.png"
+            src="img/architecture.png"
             class="architecture"
             contain
           />
@@ -28,14 +28,12 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "Home",
   data() {
     return {
-      isLoggedIn: false,
-      baseUrl: "http://soa.servehttp.com",
+      baseUrl: "https://soa.servehttp.com",
       particles: {
         id: "particles-instance-" + Math.floor(Math.random() * 5000),
         color: "#ffffff",
@@ -55,9 +53,6 @@ export default {
         clickMode: "repulse"
       }
     };
-  },
-  created() {
-    this.updateIsLoggedIn();
   },
 
   mounted: function() {
@@ -86,21 +81,6 @@ export default {
   methods: {
     login() {
       window.location = this.baseUrl + "/auth/google";
-    },
-    updateIsLoggedIn() {
-      const uri = this.baseUrl + "/novatrends/auth/check";
-      axios
-        .post(uri, {})
-        .then(response => {
-          this.isLoggedIn = response.data.auth;
-          if (this.isLoggedIn) {
-            this.$router.push("dashboard");
-          }
-        })
-        .catch(e => {
-          console.log(e);
-          this.isLoggedIn = false;
-        });
     },
 
     initParticleJS(
@@ -144,7 +124,7 @@ export default {
               nb_sides: 5
             },
             image: {
-              src: "covid.png",
+              src: "img/covid.png",
               width: 150,
               height: 150
             }
