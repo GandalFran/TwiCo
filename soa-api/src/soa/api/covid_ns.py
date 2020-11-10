@@ -10,6 +10,7 @@ from soa.run import api
 from soa.core import cache, limiter
 from soa.api.covid_models import covid_model
 from soa.api.covid_parsers import covid_argument_parser
+from soa.models.location_iq_model import LocationIqModel
 from soa.models.covid_model import BarcelonaCKANCovidExtractor
 from soa.utils import handle400error, handle404error, handle500error
 
@@ -34,15 +35,15 @@ class GetCovidCases(Resource):
 
         # retrieve and chek arguments
         try:
-                args = covid_argument_parser.parse_args()
+            args = covid_argument_parser.parse_args()
 
-                to_date = args['to_date']
-                if to_date is None:
-                    to_date = datetime.datetime.now().date().isoformat()
+            to_date = args['to_date']
+            if to_date is None:
+                to_date = datetime.datetime.now().date().isoformat()
 
-                from_date = args['from_date']
-                if from_date is None:
-                    from_date = datetime.datetime.now().date().isoformat()
+            from_date = args['from_date']
+            if from_date is None:
+                from_date = datetime.datetime.now().date().isoformat()
         except:
             return handle400error(covid_ns, 'The providen arguments are not correct. Please, check the swagger documentation at /v1')
 
@@ -63,6 +64,15 @@ class GetCovidCases(Resource):
         try:
             extractor = BarcelonaCKANCovidExtractor()
             covid_cases = extractor.extract(from_date=from_date, to_date=to_date)
+        except:
+            return handle500error(covid_ns)
+
+        # obtain location for each 
+        try:
+            location_model = LocationIqModel()
+            geocoded_places = { p : location_model.get_coordinates(p) for p in list(set([f"{c['neighborhood']}, {c['city']}" for c in covid_cases])) }
+            for c in covid_cases:
+                c['location'] = geocoded_places[f"{c['neighborhood']}, {c['city']}"]
         except:
             return handle500error(covid_ns)
 

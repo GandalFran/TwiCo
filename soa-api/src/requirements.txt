@@ -8,3 +8,4 @@ setuptools>=41.1.0
 requests==2.23.0
 tweepy==3.9.0
 vaderSentiment==3.3.2
+locationiq==0.0.2
