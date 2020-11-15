@@ -3,6 +3,7 @@
 # Copyright 2020 Luis Blazquez Miñambres (@luisblazquezm), Miguel Cabezas Puerto (@MiguelCabezasPuerto), Óscar Sánchez Juanes (@oscarsanchezj) and Francisco Pinto-Santos (@gandalfran)
 # See LICENSE for details.
 
+import ssl
 from flask_cors import CORS
 from flask import Flask, Blueprint, redirect, request
 
@@ -64,6 +65,14 @@ def register_redirection():
 
     return redirect(f'{request.url_root}/{config.URL_PREFIX}', code=302)
 
+@app.before_request
+def before_request():
+    """
+    Redirects to HTTPS
+    """
+    
+    if request.url.startswith('http://'):
+        return redirect(request.url.replace('http://', 'https://', 1), code=301)
 
 initialize_app(app)
 CORS(app)
@@ -72,11 +81,21 @@ def main():
     separator_str = ''.join(map(str, ["=" for i in range(175)]))
     print(separator_str)
     print(f'Debug mode: {config.DEBUG_MODE}')
+    print(f'HTTPS: {config.USE_HTTPS}')
+    if config.USE_HTTPS:
+        print(f'\tcert: {config.SSL_CERT}')
+        print(f'\tkey: {config.SSL_KEY}')
     print(f'Authors: {get_authors()}')
     print(f'Version: {get_version()}')
     print(f'Base URL: http://localhost:{config.PORT}{config.URL_PREFIX}')
     print(separator_str)
-    app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG_MODE)
+
+    if not config.USE_HTTPS:
+        app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG_MODE)
+    else:
+        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+        context.load_cert_chain(config.SSL_CERT, config.SSL_KEY)   
+        app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG_MODE, ssl_context =context)
 
 
 if __name__ == '__main__':

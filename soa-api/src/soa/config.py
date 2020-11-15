@@ -11,6 +11,10 @@ HOST = '0.0.0.0'
 URL_PREFIX = '/soa/v1'
 DEBUG_MODE = True
 
+USE_HTTPS = True
+SSL_KEY = './certs/server.key'
+SSL_CERT = './certs/server.crt'
+
 # barcelona ckan token
 BARCELONA_CKAN_TOKEN = "12552198a8992ac3b2129ebc803e29ac50515f383dfdc147abf39dd127050db1"
 
