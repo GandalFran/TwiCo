@@ -1,14 +1,14 @@
 <template>
-	<div class="map_box_container" >
+	<v-container class="map_box_container" >
 		<v-progress-circular
-			v-show="dataAvailable === false"
+			v-if="dataAvailable === false"
 			class="circle-loading"
 			indeterminate
 			:size="300"
 			:width="20"
 			color="#4DCCBD"
 			/>
-		<MglMap id="map" ref="map" v-show="dataAvailable === true"
+		<MglMap id="map" ref="map" v-if="dataAvailable === true"
 			:accessToken="accessToken"
 			:mapStyle.sync="mapStyle"
 			:sourceId="sourceId"
@@ -25,7 +25,7 @@
 				:source="geoJsonMapData"
 			/>
 		</MglMap>
-	</div>
+	</v-container>
 </template>
 
 <script>
@@ -172,7 +172,6 @@
 	}
 
 	.map_box_container{
-		background: red;
 		position: relative;
 		height: 100% !important;
 		width: 100% !important;
