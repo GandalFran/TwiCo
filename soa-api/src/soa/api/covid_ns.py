@@ -10,19 +10,17 @@ from soa.run import api
 from soa.core import cache, limiter
 from soa.api.covid_models import covid_model
 from soa.api.covid_parsers import covid_argument_parser
-from soa.models.location_iq_model import LocationIqModel
-from soa.models.covid_model import BarcelonaCKANCovidExtractor
 from soa.utils import handle400error, handle404error, handle500error
-
+from soa.services.covid_location_service import CovidLocationService
 
 covid_ns = api.namespace('covid', description='Provides covid information')
 
 
-@covid_ns.route('/barcelona')
+@covid_ns.route('/cases')
 class GetCovidCases(Resource):
 
     @limiter.limit('1000/hour') 
-    @cache.cached(timeout=60, query_string=True)
+    @cache.cached(timeout=84600, query_string=True)
     @api.expect(covid_argument_parser)
     @api.response(404, 'Data not found')
     @api.response(500, 'Unhandled errors')
@@ -60,19 +58,10 @@ class GetCovidCases(Resource):
         if from_date_dt > to_date_dt:
             return handle400error(covid_ns, 'The date interval providen in from_date and to_date arguments is not consistent.')
 
-        # retrieve covid cases
+        # retrieve 
         try:
-            extractor = BarcelonaCKANCovidExtractor()
-            covid_cases = extractor.extract(from_date=from_date, to_date=to_date)
-        except:
-            return handle500error(covid_ns)
-
-        # obtain location for each 
-        try:
-            location_model = LocationIqModel()
-            geocoded_places = { p : location_model.get_coordinates(p) for p in list(set([f"{c['neighborhood']}, {c['city']}" for c in covid_cases])) }
-            for c in covid_cases:
-                c['location'] = geocoded_places[f"{c['neighborhood']}, {c['city']}"]
+            covid_service = CovidLocationService()
+            covid_cases = covid_service.extract(from_date=from_date, to_date=to_date)
         except:
             return handle500error(covid_ns)
 

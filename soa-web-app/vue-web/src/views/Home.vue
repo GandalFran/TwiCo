@@ -9,7 +9,7 @@
       <v-row align="center" justify="center">
         <v-col cols="12" md="8">
           <v-img
-            lazy-src="img/architecture.png"
+            lazy-src="img/architectureLow.png"
             src="img/architecture.png"
             class="architecture"
             contain

@@ -22,7 +22,7 @@ twitter_ns = api.namespace('twitter', description='Provides tweets about a speci
 class GetTweets(Resource):
 
     @limiter.limit('1000/hour') 
-    @cache.cached(timeout=60, query_string=True)
+    @cache.cached(timeout=84600, query_string=True)
     @api.expect(twitter_argument_parser)
     @api.response(404, 'Data not found')
     @api.response(500, 'Unhandled errors')

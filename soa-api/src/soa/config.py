@@ -30,3 +30,17 @@ DEFAULT_TWEETS_LANGUAGE = 'en'
 # location api config
 LOCATIONIQ_TOKEN = "pk.3086d0188b2fa4e26bcec2436d145356"
 MAPBOX_TOKEN = "pk.eyJ1IjoibWlndWVsY2FiZXphc3B1ZXJ0byIsImEiOiJja2g5NG80Nm4wcXVpMnducWZyeDh5Y2xrIn0.X-9lAGXU4ZBiNr_1uj8udQ"
+
+#news api config
+NEWSAPI_TOKEN = "5d428c4a155f4c00b4c045fe069ff824"
+DEFAULT_NEWS_COUNTRY = 'gb'
+LIST_OF_COUNTRY_CODES = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch",
+						"cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr",
+						"hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr",
+						"lt", "lv", "ma", "mx", "my", "ng", "nl", "no", "nz",
+						"ph", "pl", "pt", "ro", "rs", "ru", "sa", "se", "sg",
+						"si", "sk", "th", "tr", "tw", "ua", "us", "ve", "za"]
+DEFAULT_NEWS_LANGUAGE = 'en'
+LIST_OF_LANGUAGE_CODES = ["ar", "de", "en", "es", "fr", "he", "it",
+						"nl", "no", "pt", "ru", "se", "ud", "zh"]
+DEFAULT_NUM_NEWS_EXTRACTED = 30
