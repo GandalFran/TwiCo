@@ -31,8 +31,6 @@ class BarcelonaCKANCovidExtractor:
         FROM "{self._resource_id}" \
         WHERE "Territori"=\'Barcelona\' \
         and "Nom_Indicador"=\'Nombre de casos positius per barri\' \
-        and "Data_Indicador">=\'{from_date}\' \
-        and "Data_Indicador"<=\'{to_date}\' \
         and "Frequencia_Indicador"=\'Diari\''
         return query
 

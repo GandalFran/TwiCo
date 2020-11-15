@@ -18,12 +18,8 @@ export class ApiSOADataModel {
     * @return COVID information.
     */
     public async covid(): Promise<Array<any>>{
-        // build one month ago date 
-        const d = new Date();
-        d.setMonth(d.getMonth() - 1);
-        const date_str = d.toISOString().split('T')[0];
         // build uri and request data
-    	const uri = `${Config.getInstance().apiBaseUrl}/covid/barcelona?from_date=${date_str}`;
+    	const uri = `${Config.getInstance().apiBaseUrl}/covid/barcelona`;
     	var rawData = await this.doRequest(uri);
         if(rawData !== null){
             rawData = JSON.parse(rawData);
