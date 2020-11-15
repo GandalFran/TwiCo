@@ -11,7 +11,6 @@ from soa.api.v1 import api
 from soa.core import cache, limiter
 from soa.api.covid_ns import covid_ns
 from soa.api.twitter_ns import twitter_ns
-from soa.api.news_ns import news_ns
 
 app = Flask(__name__)
 
@@ -39,7 +38,7 @@ __version__ = get_version()
 __author__ = get_authors()
     
 
-namespaces = [ covid_ns, twitter_ns, news_ns ]
+namespaces = [ covid_ns, twitter_ns ]
 
 
 def initialize_app(flask_app):
