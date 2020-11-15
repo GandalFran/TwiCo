@@ -9,7 +9,7 @@ import os
 PORT = 5000
 HOST = '0.0.0.0'
 URL_PREFIX = '/soa/v1'
-DEBUG_MODE = False
+DEBUG_MODE = True
 USE_HTTPS = not DEBUG_MODE
 SSL_KEY = './certs/server.key'
 SSL_CERT = './certs/server.crt'
