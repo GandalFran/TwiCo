@@ -5,6 +5,7 @@
 
 import ssl
 from flask_cors import CORS
+from flask_talisman import Talisman
 from flask import Flask, Blueprint, redirect, request
 
 from soa import config
@@ -42,21 +43,6 @@ __author__ = get_authors()
 namespaces = [ covid_ns, twitter_ns ]
 
 
-def initialize_app(flask_app):
-    """
-    This function initializes the Flask Application, adds the namespace and registers the blueprint.
-    """
-
-    flask_app.config.from_object(config)
-
-    v1 = Blueprint('api', __name__, url_prefix=config.URL_PREFIX)
-    api.init_app(v1)
-    cache.init_app(flask_app)
-    for ns in namespaces:
-        api.add_namespace(ns)
-    flask_app.register_blueprint(v1)
-    limiter.exempt(v1)
-
 @app.route('/')
 def register_redirection():
     """
@@ -65,19 +51,29 @@ def register_redirection():
 
     return redirect(f'{request.url_root}/{config.URL_PREFIX}', code=302)
 
-@app.before_request
-def before_request():
-    """
-    Redirects to HTTPS
-    """
-    
-    if request.url.startswith('http://'):
-        return redirect(request.url.replace('http://', 'https://', 1), code=301)
 
-initialize_app(app)
-CORS(app)
+def initialize_app(flask_app):
+    """
+    This function initializes the Flask Application, adds the namespace and registers the blueprint.
+    """
+
+    CORS(flask_app)
+
+    v1 = Blueprint('api', __name__, url_prefix=config.URL_PREFIX)
+    api.init_app(v1)
+
+    limiter.exempt(v1)
+    cache.init_app(flask_app)
+
+    flask_app.register_blueprint(v1)
+    flask_app.config.from_object(config)
+
+    for ns in namespaces:
+        api.add_namespace(ns)
+
 
 def main():
+    initialize_app(app)
     separator_str = ''.join(map(str, ["=" for i in range(175)]))
     print(separator_str)
     print(f'Debug mode: {config.DEBUG_MODE}')
@@ -93,9 +89,10 @@ def main():
     if not config.USE_HTTPS:
         app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG_MODE)
     else:
+        Talisman(app, force_https=True)
         context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
         context.load_cert_chain(config.SSL_CERT, config.SSL_KEY)   
-        app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG_MODE, ssl_context =context)
+        app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG_MODE, ssl_context=context)
 
 
 if __name__ == '__main__':

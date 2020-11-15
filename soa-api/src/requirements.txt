@@ -10,3 +10,4 @@ tweepy==3.9.0
 vaderSentiment==3.3.2
 locationiq==0.0.2
 newsapi-python==0.2.6
+flask-talisman==0.7.0
