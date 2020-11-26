@@ -19,7 +19,7 @@ export class ApiSOADataModel {
     */
     public async covid(): Promise<Array<any>>{
         // build uri and request data
-    	const uri = `${Config.getInstance().apiBaseUrl}/covid/cases`;
+    	const uri = `${Config.getInstance().apiBaseUrl}/covid/world`;
     	var rawData = await this.doRequest(uri);
         if(rawData !== null){
             rawData = JSON.parse(rawData);
