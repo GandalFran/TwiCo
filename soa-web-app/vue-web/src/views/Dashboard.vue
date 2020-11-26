@@ -60,8 +60,16 @@
 				:key="item.i"
 			>
 				<chart v-if="item.chartType == 'twitter'" :chartData="twitterData" > </chart>
-				<covid-chart v-if="item.chartType == 'covid'" :covidData="covidData" > </covid-chart>
-				<covid-chart v-if="item.chartType == 'covidBarcelona'" :covidData="covidDataBarcelona" > </covid-chart>
+				<covid-chart v-if="item.chartType == 'covidWorld'" 
+					:covidData="covidData" 
+					:initialZoom="worldMapConfig.initialZoom" 
+					:initialCoordinates="worldMapConfig.initialCoordinates"
+				/>
+				<covid-chart v-if="item.chartType == 'covidBarcelona'" 
+					:covidData="covidBarcelona" 
+					:initialZoom="barcelonaMapConfig.initialZoom" 
+					:initialCoordinates="barcelonaMapConfig.initialCoordinates"
+				/>
 			</grid-item>
 		</grid-layout>
 	</div>
@@ -117,7 +125,7 @@ export default {
 			}).catch(e => { console.log(e); });
 		},
 		reloadCovidData: function (){
-			const uri = this.baseUrl + "/data/covid";
+			const uri = this.baseUrl + "/data/covid/world";
 			axios.post(uri, {}).then(response => {
 				const data = response.data;
 				this.covidData = data;
