@@ -61,12 +61,12 @@
 			>
 				<chart v-if="item.chartType == 'twitter'" :chartData="twitterData" > </chart>
 				<covid-chart v-if="item.chartType == 'covidWorld'" 
-					:covidData="covidData" 
+					:covidData="covidDataWorld" 
 					:initialZoom="worldMapConfig.initialZoom" 
 					:initialCoordinates="worldMapConfig.initialCoordinates"
 				/>
 				<covid-chart v-if="item.chartType == 'covidBarcelona'" 
-					:covidData="covidBarcelona" 
+					:covidData="covidDataBarcelona" 
 					:initialZoom="barcelonaMapConfig.initialZoom" 
 					:initialCoordinates="barcelonaMapConfig.initialCoordinates"
 				/>
@@ -93,7 +93,7 @@ export default {
 		return{
 			loadingDashboard: false,
 			baseUrl: "https://soa.servehttp.com",
-			covidData: null,
+			covidDataWorld: null,
 			covidDataBarcelona: null,
 			twitterData: null,
 			layout: [
@@ -102,7 +102,7 @@ export default {
 				{"x":0,"y":20,"w":10,"h":20,"i":"2", "chartType": "twitter"},
 			],
 			barcelonaMapConfig: {
-				initialZoom: 8,
+				initialZoom: 7,
 				initialCoordinates: [2.021426, 41.560819],
 			},
 			worldMapConfig: {
@@ -128,7 +128,7 @@ export default {
 			const uri = this.baseUrl + "/data/covid/world";
 			axios.post(uri, {}).then(response => {
 				const data = response.data;
-				this.covidData = data;
+				this.covidDataWorld = data;
 			}).catch(e => { console.log(e); });
 		},
 		reloadCovidBarcelonaData: function (){
@@ -148,6 +148,7 @@ export default {
 		reloadDashBoard: function () {
 			this.reloadCovidData();
 			this.reloadTwitterData();
+			this.reloadCovidBarcelonaData();
 		},
 		reloadButton: function (){
 			this.loadingDashboard=true;
@@ -156,7 +157,7 @@ export default {
 		}
 	},
 	created: function() {
-	//this.checkAuth();
+		this.checkAuth();
 		this.reloadDashBoard();
 	}
 }

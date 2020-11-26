@@ -14,7 +14,7 @@
 				color="#66ccff"
 				@click="$router.push('/')"
 			>	
-				<v-icon>fas fa-chevron-left</v-icon>
+				<v-icon>fas fa-home</v-icon>
 			</v-btn>
 
 		</v-toolbar>
@@ -43,7 +43,7 @@ export default {
 			margin: 0;
 	}
 
-	*{
+	.txt{
 			font-family: 'Press Start 2P', cursive;
 			box-sizing: border-box;
 	}

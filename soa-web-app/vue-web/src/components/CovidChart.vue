@@ -16,7 +16,6 @@
 			:zoom="initialZoom"
 			:maxzoom="initialZoom"
 			:center="initialCoordinates"
-			@load="mapLoaded"
 			>
 			<MglGeojsonLayer
 				:layerId="layerId"
@@ -54,10 +53,6 @@ export default {
 		this.mapbox = Mapbox;
 	},
 	methods: {
-		mapLoaded(e) {
-			console.log(e)
-			//this.$nextTick().then(() => {map.repaint() })
-		},
 
 		seriesToGeoJson(data){
 			return{
@@ -85,6 +80,7 @@ export default {
 			if(data === null || data === undefined){
 				return this.seriesToGeoJson([]);
 			}else{
+
 				var mappedData = data.map(function(e){
 					return {
 						date: new Date(e.date),
@@ -132,12 +128,6 @@ export default {
 					'heatmap-weight': {
 						property: 'cases',
 						type: 'identity'
-					},
-					'heatmap-intensity': {
-						stops: [
-							[11, 1],
-							[15, 3]
-						]
 					},
 					'heatmap-color': [
 						'interpolate',
