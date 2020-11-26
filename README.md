@@ -11,8 +11,8 @@ Final project for the SOA subject of the Computer Science Master's degree at USA
 
 
 ## Current deployments
-- API: `http://soa.servehttp.com:5000/soa/v1/`
-- WEB: `https://soa.servehttp.com`
+- web: https://soa.servehttp.com
+- api: http://soa.servehttp.com:5000/soa/v1/
 
 ## Authors
 - Luis Blazquez Miñambres (@luisblazquezm)
