@@ -19,6 +19,7 @@
         Logout
       </v-btn>
 
+      <a href="http://soa.servehttp.com:5000/soa/v1/">Try our public API</a>
     </v-toolbar>
      <grid-layout
         :layout.sync="layout"
