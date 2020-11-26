@@ -28,7 +28,7 @@ location_model = api.model('Location information',{
 
 covid_model = api.model('Covid information', {
 	'cases': fields.Integer(example=10, description='Number of confirmed cases.'),
+	'deaths': fields.Integer(example=10, description='Number of confirmed deaths.'),
 	'location': fields.Nested(location_model, description='Covid cases location information.'),
 	'date': fields.DateTime(example='2020-11-02T00:00:00', description='Date in ISO 8601 format.'),
-	'source': fields.String(example='Agència de Salut Pública de Barcelona', description='Institution that provides the information.')
 }, description='Information of number of confirmed COVID cases, in a concrete city neighborhood and date.')

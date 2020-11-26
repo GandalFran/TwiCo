@@ -41,7 +41,7 @@ class GetCovidCases(Resource):
 
             from_date = args['from_date']
             if from_date is None:
-                from_date = datetime.datetime.now().date().isoformat()
+                from_date = (datetime.datetime.now() - datetime.timedelta(days=1)).date().isoformat()
         except:
             return handle400error(covid_ns, 'The providen arguments are not correct. Please, check the swagger documentation at /v1')
 
