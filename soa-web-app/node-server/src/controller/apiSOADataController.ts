@@ -22,8 +22,9 @@ export class ApiSOADataController{
     * @param application - the express aplication.
     */
     public registerController(application: Express.Express): any {
-        application.post("/data/covid", this.covid.bind(this));
         application.post("/data/twitter", this.twitter.bind(this));
+        application.post("/data/covid/world", this.covid.bind(this));
+        application.post("/data/covid/barcelona", this.covidBarcelona.bind(this));
     }
 
     /** 
@@ -37,6 +38,33 @@ export class ApiSOADataController{
         let result = null;
         try{
             result = await ApiSOADataController.apiSOADataModel.covid();
+        }catch(e){
+            response.status(STATUS_INTERNAL_SERVER_ERROR);
+            response.contentType(CONTENT_APPLICATION_JSON);
+            response.json({'error': 'unkown error'});
+            return;
+        }
+
+        if(result === null){
+            response.status(STATUS_INTERNAL_SERVER_ERROR);
+        }else{
+            response.status(STATUS_OK);
+            response.contentType(CONTENT_APPLICATION_JSON);
+            response.json(result);
+        }
+    }
+    
+    /** 
+    * Retrieves the Barcelona covid data.
+    * @param request - the express request.
+    * @param response - the express response.
+    */
+    public async covidBarcelona(request: Express.Request, response: Express.Response) {
+
+        // retrieve data
+        let result = null;
+        try{
+            result = await ApiSOADataController.apiSOADataModel.covidBarcelona();
         }catch(e){
             response.status(STATUS_INTERNAL_SERVER_ERROR);
             response.contentType(CONTENT_APPLICATION_JSON);
