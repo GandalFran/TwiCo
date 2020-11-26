@@ -4,7 +4,7 @@
 # See LICENSE for details.
 
 from soa.models.location_iq_model import LocationIqModel
-from soa.models.covid_model import BarcelonaCKANCovidExtractor
+from soa.models.covid_model_eu import EUCovidExtraction
 
 class CovidLocationService:
 
@@ -26,13 +26,13 @@ class CovidLocationService:
         """
 
         # retrieve covid cases
-        extractor = BarcelonaCKANCovidExtractor()
+        extractor = EUCovidExtraction()
         covid_cases = extractor.extract(from_date=from_date, to_date=to_date)
 
         # obtain location for each
         location_model = LocationIqModel() 
-        geocoded_places = { p : location_model.get_coordinates(p) for p in list(set([f"{c['neighborhood']}, {c['city']}" for c in covid_cases])) }
+        geocoded_places = { p : location_model.get_coordinates(p) for p in list(set([c['country'] for c in covid_cases])) }
         for c in covid_cases:
-            c['location'] = geocoded_places[f"{c['neighborhood']}, {c['city']}"]
+            c['location'] = geocoded_places[c['country']]
 
         return covid_cases
