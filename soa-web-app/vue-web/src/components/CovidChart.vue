@@ -44,7 +44,7 @@
 				mapbox: Mapbox,
 				isUpdated: false,
 				geojsonSeries: [],
-				initialZoom: 8,
+				initialZoom: 4,
 				initialCoordinates: [2.021426, 41.560819],
 				layerId: "myLayerId",
 				sourceId: "mySourceId",
