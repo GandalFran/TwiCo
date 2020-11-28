@@ -6,7 +6,7 @@
 			indeterminate
 			:size="300"
 			:width="20"
-			color="#ffffff"
+			color="#F5F8FA"
 			/>
 		<div v-show="dataAvailable === true" ref="chartdiv"> </div>
 		<div v-show="dataAvailable === true" v-text="chartData"> </div>

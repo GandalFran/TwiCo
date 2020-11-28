@@ -6,7 +6,7 @@
 			indeterminate
 			:size="300"
 			:width="20"
-			color="#ffffff"
+			color="#F5F8FA"
 			/>
 		<MglMap id="map" ref="map" v-if="dataAvailable === true"
 			:accessToken="accessToken"
