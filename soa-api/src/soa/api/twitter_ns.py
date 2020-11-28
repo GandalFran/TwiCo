@@ -11,7 +11,7 @@ from soa.run import api
 from soa.core import cache, limiter
 from soa.api.twitter_models import twitter_model
 from soa.api.twitter_parsers import twitter_argument_parser
-from soa.models.twitter_model import TwitterExtraction
+from soa.services.news_twitter_extraction import NewsAndTwitterExtraction
 from soa.utils import handle400error, handle404error, handle500error
 
 

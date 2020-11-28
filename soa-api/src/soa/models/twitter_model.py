@@ -30,7 +30,7 @@ class TwitterExtraction:
                                 query: str, 
                                 count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                 lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                start_date: str = datetime.today().strftime('%Y-%m-%d'),
+                                start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
                                 end_date: str = datetime.today().strftime('%Y-%m-%d')) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query
         
@@ -91,7 +91,7 @@ class TwitterExtraction:
                                   query: List[str], 
                                   count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                   lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                  start_date: str = datetime.today().strftime('%Y-%m-%d'),
+                                  start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
                                   end_date: str = datetime.today().strftime('%Y-%m-%d'),
                                   include_both: bool = False) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query
@@ -137,7 +137,7 @@ class TwitterExtraction:
                                      query: str, 
                                      count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                      lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                     start_date: str = datetime.today().strftime('%Y-%m-%d'),
+                                     start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
                                      end_date: str = datetime.today().strftime('%Y-%m-%d')) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query BUT using Bearer Token Auth from
         Twitter API to retrieve more tweets and more info
@@ -200,7 +200,7 @@ class TwitterExtraction:
                                               query: list, 
                                               count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                               lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                              start_date: str = datetime.today().strftime('%Y-%m-%d'),
+                                              start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
                                               end_date: str = datetime.today().strftime('%Y-%m-%d'),
                                               include_both: bool = False) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query BUT using Bearer Token Auth from

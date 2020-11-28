@@ -66,7 +66,7 @@ class NewsExtraction:
 
     def get_news_everything(self,
                             q: str,
-                            from_date: str = datetime.today().strftime('%Y-%m-%d'),
+                            from_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
                             to_date: str = datetime.today().strftime('%Y-%m-%d'),
                             lang: str = config.DEFAULT_NEWS_LANGUAGE,
                             count: int = config.DEFAULT_NUM_NEWS_EXTRACTED) -> List[Dict]:
