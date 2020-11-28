@@ -18,6 +18,8 @@ jobs:
       run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm install
     - name: build vue web
       run: cd /opt/soa-final/_work/soa-final/soa-final/soa-web-app/vue-web; npm run build
+    - name: delete previous web build directory
+      run: rmdir -f /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/static/*
     - name: create final location directory
       run: mkdir /opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/static
     - name: copy web to final location
