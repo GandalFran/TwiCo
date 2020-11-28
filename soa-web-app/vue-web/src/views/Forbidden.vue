@@ -45,6 +45,7 @@ export default {
 	}
 
 	.txt{
+			color: #F5F8FA;
 			font-family: 'Press Start 2P', cursive;
 			box-sizing: border-box;
 	}
