@@ -4,10 +4,13 @@
 			dense
 			color="#F5F8FA"
 		>
-			<v-toolbar-title>
-				<h1 class="mytitle" > Twico </h1>
-			</v-toolbar-title>
+			<v-spacer />
+			<v-spacer />
+			<v-spacer />
 			
+			<v-img src="img/logo.png" contain max-height="50" />
+			
+			<v-spacer />
 			<v-spacer />
 			
 			<v-btn 
@@ -15,7 +18,7 @@
 				color="#1DA1F2"
 				@click="login"
 			>	
-				<p class="myText" >Dashboard</p>
+				<p class="mytext" >Dashboard</p>
 			</v-btn>
 
 		</v-toolbar>
