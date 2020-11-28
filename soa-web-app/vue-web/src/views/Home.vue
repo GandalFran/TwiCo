@@ -5,7 +5,7 @@
 			color="#F5F8FA"
 		>
 			<v-toolbar-title>
-				<h1 id="title" > Twico </h1>
+				<h1 class="mytitle" > Twico </h1>
 			</v-toolbar-title>
 			
 			<v-spacer />
@@ -27,6 +27,32 @@
 				class="architecture"
 				contain
 			/>
+		</div>
+
+		<v-span />
+
+		<div class="theOtherBackgrhound">
+			<v-row>
+				<v-col
+					v-for="member in team" :key="member"
+				>
+					<v-card
+						raised
+						class="mx-auto"
+						max-width="300"
+					>
+						<a :href="member.link" target="_blank">
+							<v-img
+								height="200px"
+								:src="member.image"
+								class="white--text align-end"
+							/>
+						</a>
+						<v-card-subtitle class="mytitle" v-text="member.name" />
+						<v-card-text class="mytext" v-text="member.text" />
+					</v-card>
+				</v-col>
+			</v-row>
 		</div>
 	</div>
 </template>
@@ -55,7 +81,33 @@ export default {
 				clickEffect: true,
 				hoverMode: "bubble",
 				clickMode: "repulse"
-			}
+			},
+			team: [
+				{
+					name: 'Francisco Pinto Santos',
+					text: 'Escribo cosas y a veces funcionan',
+					link: 'https://github.com/GandalFran',
+					image: 'https://avatars2.githubusercontent.com/u/29973536?s=460&u=b45b09f015e310153cd146b8903443c9d0080494&v=4',
+				},
+				{
+					name: 'Luis Blazquez Miñambres',
+					text: 'Escribo cosas y a veces funcionan',
+					link: 'https://github.com/luisblazquezm',
+					image: 'https://avatars0.githubusercontent.com/u/40697133?s=460&u=82f3e7d01e88b27ea481e57791fa62c9d519d2ac&v=4',
+				},
+				{
+					name: 'Miguel Cabezas Puerto',
+					text: 'Escribo cosas y a veces funcionan',
+					link: 'https://github.com/MiguelCabezasPuerto',
+					image: 'https://avatars2.githubusercontent.com/u/47638681?s=460&v=4',
+				},
+				{
+					name: 'Oscar Sánchez Juanes',
+					text: 'Escribo cosas y a veces funcionan',
+					link: 'https://github.com/oscarsanchezj',
+					image: 'https://avatars3.githubusercontent.com/u/48065910?s=460&u=c8287b792cf94981253c644207661e75fbda96c2&v=4',
+				},				
+			],
 		};
 	},
 
@@ -229,6 +281,11 @@ export default {
 .theBackground {
 	background: #1DA1F2;
 }
+
+.theOtherBackgrhound {
+	background: #F5F8FA;
+}
+
 .architecture {
 	position: absolute;
 	top: 0;
@@ -240,13 +297,13 @@ export default {
 	margin: auto;
 }
 
-#title {
+.mytitle {
 	color: #1DA1F2;  
 	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 	font-weight: bold;
 }
 
-.myText{
+.mytext{
 	color:#F5F8FA;
 	font-weight: bold;
 	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
