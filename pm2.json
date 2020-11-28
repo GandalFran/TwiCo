@@ -2,7 +2,7 @@
   "apps" : [
     {
       "name": "soa-api",
-      "cwd": "/opt/soa-final/_work/soa-final/soa-final/soa-api/src",
+      "cwd": "/opt/soa-final/_work/TwiCo/TwiCo/soa-api/src",
       "interpreter": "/bin/bash",
       "script": "launch.bash",
       "out_file": "/var/log/soa_api.log",
@@ -18,7 +18,7 @@
     {
       "name": "soa-web-application",
       "interpreter": "/usr/bin/node",
-      "cwd": "/opt/soa-final/_work/soa-final/soa-final/soa-web-app/node-server/build",
+      "cwd": "/opt/soa-final/_work/TwiCo/TwiCo/soa-web-app/node-server/build",
       "script": "index.js",
       "out_file": "/var/log/soa_web.log",
       "error_file": "/var/log/soa_web.log"

@@ -28,6 +28,20 @@ export class ApiSOADataModel {
     }
 
     /** 
+    * Retrieves COVID barcelona information.
+    * @return COVID barcelona information.
+    */
+    public async covidBarcelona(): Promise<Array<any>>{
+        // build uri and request data
+        const uri = `${Config.getInstance().apiBaseUrl}/covid/barcelona`;
+        var rawData = await this.doRequest(uri);
+        if(rawData !== null){
+            rawData = JSON.parse(rawData);
+        }
+        return Promise.resolve(rawData);
+    }
+
+    /** 
     * Retrieves twitter information.
     * @return twitter information.
     */

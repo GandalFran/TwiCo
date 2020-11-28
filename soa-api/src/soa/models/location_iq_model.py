@@ -44,6 +44,8 @@ class LocationIqModel:
 				return result
 			except LocationIqRequestLimitExeceeded:
 				time.sleep(time_between_tries)
+			except:
+				pass
 
 		return None
 

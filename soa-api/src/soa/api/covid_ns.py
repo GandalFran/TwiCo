@@ -41,8 +41,9 @@ class GetCovidCasesWorldWide(Resource):
 
             from_date = args['from_date']
             if from_date is None:
-                from_date = (datetime.datetime.now() - datetime.timedelta(days=1)).date().isoformat()
-        except:
+                from_date = (datetime.datetime.now() - datetime.timedelta(days=365)).date().isoformat()
+        except Exception as e:
+            raise e
             return handle400error(covid_ns, 'The providen arguments are not correct. Please, check the swagger documentation at /v1')
 
         try:

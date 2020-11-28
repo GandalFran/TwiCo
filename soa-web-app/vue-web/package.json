@@ -23,13 +23,16 @@
     "vuetify": "~2.3.16"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "@vue/cli-plugin-babel": "~4.5.8",
     "@vue/cli-plugin-eslint": "~4.5.8",
     "@vue/cli-plugin-router": "~4.5.8",
     "@vue/cli-service": "~4.5.8",
     "babel-eslint": "~10.1.0",
+    "css-loader": "^5.0.1",
     "eslint": "~6.8.0",
     "eslint-plugin-vue": "~6.2.2",
+    "font-awesome": "^4.7.0",
     "sass": "~1.28.0",
     "sass-loader": "~8.0.2",
     "vue-cli-plugin-vuetify": "~2.0.7",
@@ -48,7 +51,13 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "off",
+      "indent": [
+        "error",
+        "tab"
+      ]
+    }
   },
   "browserslist": [
     "> 1%",
