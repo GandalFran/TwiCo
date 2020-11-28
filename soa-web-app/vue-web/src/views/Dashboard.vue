@@ -2,6 +2,7 @@
 	<div class="theBackground">
 		<v-toolbar
 			dense
+			color="#F5F8FA"
 		>
 			<v-toolbar-title>
 				<h1 id="title" > Twico </h1>
@@ -11,7 +12,7 @@
 
 			<v-btn 
 				icon
-				color="#66ccff"
+				color="#1DA1F2"
 				@click="reloadButton"
 				:loading="loadingDashboard"
 				:disabled="loadingDashboard"
@@ -21,7 +22,7 @@
 
 			<v-btn 
 				icon
-				color="#66ccff"
+				color="#1DA1F2"
 				@click="logout"
 			>
 				<v-icon>fas fa-sign-out-alt</v-icon>
@@ -29,7 +30,7 @@
 
 			<v-btn 
 				icon
-				color="#66ccff"
+				color="#1DA1F2"
 				target="_blank"
 				href="http://soa.servehttp.com:5000/soa/v1/" 
 			>	
@@ -165,11 +166,11 @@ export default {
 
 <style>
 	.theBackground {
-		background: #66ccff
+		background: #1DA1F2
 	}
 
 	#title {
-		color: #66ccff;  
+		color: #1DA1F2;  
 		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 		font-weight: bold;
 	}

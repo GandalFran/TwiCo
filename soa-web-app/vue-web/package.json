@@ -53,7 +53,10 @@
     },
     "rules": {
       "no-unused-vars": "off",
-      "indent": ["error", "tab"]
+      "indent": [
+        "error",
+        "tab"
+      ]
     }
   },
   "browserslist": [

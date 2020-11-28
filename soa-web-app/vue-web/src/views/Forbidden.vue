@@ -2,6 +2,7 @@
 	<div>
 		<v-toolbar
 			dense
+			color="#F5F8FA"
 		>
 			<v-toolbar-title>
 				<h1 id="title" > Twico </h1>
@@ -11,7 +12,7 @@
 
 			<v-btn 
 				icon
-				color="#66ccff"
+				color="#1DA1F2"
 				@click="$router.push('/')"
 			>	
 				<v-icon>fas fa-home</v-icon>
@@ -50,13 +51,13 @@ export default {
 	#forbidenapp{
 			padding: 1rem;
 			position: absolute;
-			background: #66ccff;
+			background: #1DA1F2;
 			display: flex;
 			height: 100%;
 			width: 100%;
 			justify-content: center; 
 			align-items: center;
-			color: white;
+			color: #F5F8FA;
 			text-shadow: 0px 0px 10px;
 			font-size: 6rem;
 			.txt {
@@ -78,7 +79,7 @@ export default {
 
 
 	#title {
-		color: #66ccff;  
+		color: #1DA1F2;  
 		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 		font-weight: bold;
 	}

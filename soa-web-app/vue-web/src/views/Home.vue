@@ -2,6 +2,7 @@
 	<div>
 		<v-toolbar
 			dense
+			color="#F5F8FA"
 		>
 			<v-toolbar-title>
 				<h1 id="title" > Twico </h1>
@@ -11,7 +12,7 @@
 			
 			<v-btn 
 				raised
-				color="#66ccff"
+				color="#1DA1F2"
 				@click="login"
 			>	
 				<p class="myText" >Dashboard</p>
@@ -39,7 +40,7 @@ export default {
 			baseUrl: "https://soa.servehttp.com",
 			particles: {
 				id: "particles-instance-" + Math.floor(Math.random() * 5000),
-				color: "#ffffff",
+				color: "#F5F8FA",
 				linesColor: "#474747",
 				shapeType: "image",
 				lineOpacity: 0.4,
@@ -226,7 +227,7 @@ export default {
 
 <style>
 .theBackground {
-	background: #66ccff;
+	background: #1DA1F2;
 }
 .architecture {
 	position: absolute;
@@ -240,13 +241,13 @@ export default {
 }
 
 #title {
-	color: #66ccff;  
+	color: #1DA1F2;  
 	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 	font-weight: bold;
 }
 
 .myText{
-	color:white;
+	color:#F5F8FA;
 	font-weight: bold;
 	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 }
