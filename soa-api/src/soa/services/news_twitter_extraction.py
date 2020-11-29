@@ -8,16 +8,15 @@ from soa.models.topic_modelling_model import TopicModellingExtraction
 from soa.models.twitter_model import TwitterExtraction
 from soa.models.sentiment_model import SentimentAnalyzer
 
-
 class NewsAndTwitterExtraction:
 
     def extract(self, 
                 query:str, 
-                count_news:int=config.DEFAULT_NUM_NEWS_EXTRACTED, 
-                count_tweets:int=config.DEFAULT_NUM_TWEETS_EXTRACTED, 
-                lang:str=config.DEFAULT_TWEETS_LANGUAGE, 
+                count_news:int=DEFAULT_NUM_NEWS_EXTRACTED, 
+                count_tweets:int=DEFAULT_NUM_TWEETS_EXTRACTED, 
+                lang:str=DEFAULT_TWEETS_LANGUAGE, 
                 from_date:str=(datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'), 
-                to_date:str=datetime.today().strftime('%Y-%m-%d')) -> dict:
+                to_date:str=datetime.date.today().strftime('%Y-%m-%d')) -> dict:
         """
         Extracts news about a theme given, extracting the main topics of those news and getting tweets talking about that theme and each topic extracted
         to know the sentiment and opinion of the people on Twitter talking about those themes.
@@ -58,25 +57,30 @@ class NewsAndTwitterExtraction:
         print("Extracting news...")
         list_news = news_hdlr.get_news_everything(q=query,
                                                   count=count_news,
-                                                  lang=lang,
-                                                  from_date=from_date,
-                                                  to_date=to_date)
+                                                  lang=lang)
 
         ## 2. Analyze and get topics from list of news
         topics_hdlr = TopicModellingExtraction()
         print("Extracting topics...")
-        text_query = '.'.join([news['content'] for news in list_news])
+        text_query = ''.join([ news['content'] for news in list_news if news['content'] is not None])
+        printable = set(string.printable)
+        text_query = ''.join(filter(lambda x: x in printable, text_query))
         topics = topics_hdlr.get_topics(text=text_query)
+        topics['topics'] = list(set(topics['topics']))
 
         ## 3. Search tweets containing 'covid' keywords and topics extracted
         topic_result = {}
         twitter_hdlr = TwitterExtraction()
+        sentiment_hdlr = SentimentAnalyzer()
         print("Extracting tweets...")
-        twitter_search_query_list = [query]
         for topic in topics['topics']:
 
+            twitter_search_query_list = [query, topic]
+
             # Extract from twitter api
-            list_tweets = twitter_hdlr.get_tweets_multiple_query(query=twitter_search_query_list.append(topic), 
+            print("····· FROM API")
+            print(twitter_search_query_list)
+            list_tweets = twitter_hdlr.get_tweets_multiple_query(query=twitter_search_query_list, 
                                                                  count=count_tweets,
                                                                  lang=lang,
                                                                  start_date = from_date,
@@ -86,12 +90,11 @@ class NewsAndTwitterExtraction:
 
             ## 4. Sentiment analysis on text
             twitter_results = []
-            sentiment_hdlr = SentimentAnalyzer()
-            sentiment_results = [sentiment_hdlr.analyze(tweet['text']) for tweet in list_tweets]
-
-            if len(sentiment_results) == len(list_tweets):
-                for (tweet, sentiment) in zip(list_tweets, sentiment_results):
-                    twitter_results.append({'url': tweet['url'], 'text': tweet['text'], 'sentiment': sentiment})
+            print("····· CALCULATING SENTIMENT")
+            for tweet in list_tweets:
+                twitter_results.append({'url': tweet['url'], 
+                                        'text': tweet['text'], 
+                                        'sentiment': sentiment_hdlr.analyze(tweet['text'])['sentiment']})
 
             topic_result['tweets'] = twitter_results
             final_results.append(topic_result)

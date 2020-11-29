@@ -101,10 +101,10 @@ class SentimentAnalyzer:
         # which contains pos, neg, neu, and compound scores. 
         score_dict = self._analyser.polarity_scores(text)
 
-        print("Overall sentiment dictionary is : ", score_dict) 
-        print("sentence was rated as ", score_dict['neg']*100, "% Negative") 
-        print("sentence was rated as ", score_dict['neu']*100, "% Neutral") 
-        print("sentence was rated as ", score_dict['pos']*100, "% Positive") 
+        #print("Overall sentiment dictionary is : ", score_dict) 
+        #print("sentence was rated as ", score_dict['neg']*100, "% Negative") 
+        #print("sentence was rated as ", score_dict['neu']*100, "% Neutral") 
+        #print("sentence was rated as ", score_dict['pos']*100, "% Positive") 
       
         # decide sentiment as positive, negative and neutral 
         if score_dict['compound'] >= 0.05 : 

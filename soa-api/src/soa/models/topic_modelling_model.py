@@ -105,8 +105,7 @@ class TopicModellingExtraction:
         words = vectorizer.get_feature_names()
         list_topics = []
         for topic_idx, topic in enumerate(model.components_):
-            print("\nTopic #%d:" % topic_idx)
             topics_str = " ".join([words[i] for i in topic.argsort()[:-n_top_words - 1:-1]])
             list_topics.extend(topics_str.split())
 
-        return list_topics
+        return list_topics[:NUM_TOPICS]
