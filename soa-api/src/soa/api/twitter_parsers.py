@@ -14,12 +14,19 @@ twitter_argument_parser.add_argument('q',
 							default=None,
 							help='The list of topics or themes to search tweets from. It must be a list of words separated by commas.')
 
-twitter_argument_parser.add_argument('count',
+twitter_argument_parser.add_argument('count_tweets',
 							location='args',
 							type=int,
 							required=False,
 							default=None,
 							help='Numbers of tweets to retrieve.')
+
+twitter_argument_parser.add_argument('count_news',
+							location='args',
+							type=int,
+							required=False,
+							default=None,
+							help='Numbers of news to retrieve.')
 
 twitter_argument_parser.add_argument('lang',
 							location='args',
@@ -41,10 +48,3 @@ twitter_argument_parser.add_argument('to_date',
 							required=False,
 							default=None,
 							help='The end date to retrieve tweets from. The date must be in ISO 8601 format YYYY-mm-dd.')
-
-twitter_argument_parser.add_argument('include_both',
-							location='args',
-							type=str,
-							required=False,
-							default=None,
-							help="It indicates if the tweets to retrieve will contain all the keywords set in the query or not. It can be 'True' or 'False'.")

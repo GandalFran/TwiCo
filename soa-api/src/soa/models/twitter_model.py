@@ -56,7 +56,6 @@ class TwitterExtraction:
         try:
             # src: https://stackoverflow.com/questions/42384305/tweepy-cursor-multiple-or-logic-function-for-query-terms
             # src: https://stackoverflow.com/questions/53161459/how-to-get-the-full-text-of-a-tweet-using-tweepy            
-            print("Iterating tweets....")
             for status in tweepy.Cursor(self._api.search,
                                         q=q,
                                         until=end_date,
@@ -69,6 +68,7 @@ class TwitterExtraction:
                 # Extract information
                 tweet_object = {}
                 tweet_object['text'] = self.extract_text(status)
+                tweet_object['url'] = self.extract_url(status)
                 tweet_object['date'] = self.extract_date_of_creation(status)
                 tweet_object['geolocation'] = self.extract_geolocation(status)
                 tweet_object['coordinates'] = self.extract_coordinates(status)
@@ -81,9 +81,6 @@ class TwitterExtraction:
                     The error code is " + str(e))
             sleep(60 * 15)
             return []
-
-        # Parsing tweets one by one
-        print(len(tweets))
 
         return tweets
 
@@ -124,8 +121,6 @@ class TwitterExtraction:
         # Remove last 'OR'
         last_characters = - len(separator)
         multiple_query = multiple_query[:last_characters]
-
-        print(multiple_query)
 
         return self.get_tweets_single_query(query = multiple_query,
                                             count = count,
@@ -178,13 +173,12 @@ class TwitterExtraction:
 
         # Extract information
         if response.status_code == requests.codes.ok:
-            print(response.status_code)
-            print(response.json())
 
             # Extract information
             for status in response.json()['statuses']:
                 tweet_object = {}
                 tweet_object['text'] = self.extract_text(status)
+                tweet_object['url'] = self.extract_url(status)
                 tweet_object['date'] = self.extract_date_of_creation(status)
                 tweet_object['geolocation'] = self.extract_geolocation(status)
                 tweet_object['coordinates'] = self.extract_coordinates(status)
@@ -236,8 +230,6 @@ class TwitterExtraction:
         last_characters = - len(separator)
         multiple_query = multiple_query[:last_characters]
 
-        print(multiple_query)
-
         return self.get_tweets_with_bearer_token(q = multiple_query,
                                                  count = count,
                                                  lang = lang,
@@ -260,6 +252,18 @@ class TwitterExtraction:
         if clean_text:
             text = re.sub("[^A-Za-z]", "", text) # Clean tweet
         return text
+
+    def extract_url(self, obj: dict) -> str:
+        """Extracts text from tweet object status
+        
+        Arguments:
+            obj {dict} -- status with information about a tweet from Twitter API
+        
+        Returns:
+            str -- url of the tweet
+        """
+        url = "https://twitter.com/twitter/statuses/" + obj.id
+        return url
 
     def extract_date_of_creation(self, obj: dict) -> str:
         """Extracts date and time from tweet object status

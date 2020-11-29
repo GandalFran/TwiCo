@@ -41,11 +41,17 @@ class GetTweets(Resource):
             if query is None:
                 return handle400error(twitter_ns, "The 'q' argument is required. Please, check the swagger documentation at /v1")
 
-            count = args['count']
-            if count is None:
-                count = config.DEFAULT_NUM_TWEETS_EXTRACTED
+            count_tweets = args['count_tweets']
+            if count_tweets is None:
+                count_tweets = config.DEFAULT_NUM_TWEETS_EXTRACTED
             else:
-                count = int(count)
+                count_tweets = int(count_tweets)
+
+            count_news = args['count_news']
+            if count_news is None:
+                count_news = config.DEFAULT_NUM_NEWS_EXTRACTED
+            else:
+                count_news = int(count_news)
 
             lang = args['lang']
             if lang is None:
@@ -58,10 +64,6 @@ class GetTweets(Resource):
             to_date = args['to_date']
             if to_date is None:
                 to_date = datetime.datetime.now().strftime('%Y-%m-%d')
-
-            include_both = args['include_both']
-            if include_both is None:
-                include_both = False
 
         except Exception as e:
             print(e)
@@ -76,8 +78,11 @@ class GetTweets(Resource):
         except:
             return handle400error(twitter_ns, 'The provided query is not a list.')
 
-        if count <= 0:
-            return handle400error(twitter_ns, 'The provided number of tweets is 0.')
+        if count_tweets <= 0:
+            return handle400error(twitter_ns, 'The provided number of tweets to extract is 0.')
+
+        if count_news <= 0:
+            return handle400error(twitter_ns, 'The provided number of news to extract is 0.')
 
         if len(lang) > 5: # 5 is the maximum length of a ISO language code
             return handle400error(twitter_ns, 'The provided language is not an ISO code')
@@ -95,38 +100,21 @@ class GetTweets(Resource):
         if from_date_dt > to_date_dt:
             return handle400error(twitter_ns, 'The date interval provided in from_date and to_date arguments is not consistent.')
 
-        include_both_flag = False
-        if type(include_both) != bool:
-            if include_both.lower() not in ['true', 'false']:
-                return handle400error(twitter_ns, "The value indicated for the parameter is not a correct. The value must be 'True' or 'False'.")
-            else:
-                if include_both.lower() == 'true':
-                    include_both_flag = True
-                elif include_both.lower() == 'false':
-                    include_both_flag = False
-
         # retrieve covid cases
         try:
-            extractor = TwitterExtraction()
-            if len(q) > 1:
-                tweets = extractor.get_tweets_multiple_query(query=q, 
-                                                             count=count,
-                                                             lang=lang,
-                                                             start_date=from_date_dt,
-                                                             end_date=to_date_dt,
-                                                             include_both=include_both_flag)
-            elif len(q) == 1:
-                tweets = extractor.get_tweets_single_query(query=q, 
-                                                           count=count,
-                                                           lang=lang,
-                                                           start_date=from_date_dt,
-                                                           end_date=to_date_dt)
+            extractor = NewsAndTwitterExtraction()
+            tweets = extractor.extract(query=q, 
+                                       count_tweets=count_tweets,
+                                       count_news=count_news,
+                                       lang=lang,
+                                       start_date=from_date_dt,
+                                       end_date=to_date_dt)
         except:
             return handle500error(twitter_ns)
 
         # if there are no tweets found about the topic given, return 4040 error
         if not tweets:
-            return handle404error(twitter_ns, 'No tweets were found for the given parameters.')
+            return handle404error(twitter_ns, 'No results were found for the given parameters.')
 
         return tweets
             

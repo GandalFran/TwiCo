@@ -8,10 +8,19 @@ from flask_restx import fields
 
 from soa.run import api
 
+tweet_model = api.model("Tweet information", {
+    'url':  fields.String(example='https://twitter.com/NASA/status/967824267948773377', description='URL to the tweet'),
+    'text':  fields.String(example='This is a tweet about COVID #covid-19', description='Text of the tweet extracted'),
+    'sentiment':  fields.String(example='positive', description='Sentiment result of text analysis'),
+})
+
+topics_model = api.model("Topics information", {
+    'name': fields.String(example='covid', description='Theme or topic of the tweets extracted'),
+    'tweets': fields.List(fields.Nested(tweet_model))
+})
 
 twitter_model = api.model('Twitter information', {
-	'text': fields.String(example='This is a tweet about COVID #covid-19', description='Text of the retrieved tweet'),
-	'date': fields.String(example='2020-11-02, 00:00:00', description='Date and time of the tweet posting'),
-	'geolocation': fields.String(example='{"type": "Point","coordinates": [-105.2812196, 40.0160921]}', description='Geolocation of the tweet.'),
-	'coordinates': fields.String(example='{"type": "Point","coordinates": [-105.2812196, 40.0160921]}', description='Coordinates of the area where the tweet was posted'),
-}, description='Tweets posted talking about COVID and other themes')
+	'news': fields.List(example='["This is a news about covid-19,...", "...", ...]', description='News extracted about a theme given'),
+	'topics': fields.Nested(topics_model)
+}, description='Result of Twitter and News extraction and topic modelling and sentiment analysis')
+
