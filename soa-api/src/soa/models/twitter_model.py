@@ -9,7 +9,7 @@ import re
 
 from soa import config
 from tweepy import OAuthHandler
-from datetime import datetime
+import datetime
 from typing import List, Dict, Any
 
 class TwitterExtraction:
@@ -30,8 +30,8 @@ class TwitterExtraction:
                                 query: str, 
                                 count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                 lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                start_date: str = datetime.today().strftime('%Y-%m-%d'),
-                                end_date: str = datetime.today().strftime('%Y-%m-%d')) -> List[Dict]:
+                                start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
+                                end_date: str = datetime.date.today().strftime('%Y-%m-%d')) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query
         
         Arguments:
@@ -40,8 +40,8 @@ class TwitterExtraction:
         Keyword Arguments:
             count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
             lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
+            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
         
         Returns:
             :obj:`list` -- list of dictionaries containing information about the tweets retrieved
@@ -56,7 +56,6 @@ class TwitterExtraction:
         try:
             # src: https://stackoverflow.com/questions/42384305/tweepy-cursor-multiple-or-logic-function-for-query-terms
             # src: https://stackoverflow.com/questions/53161459/how-to-get-the-full-text-of-a-tweet-using-tweepy            
-            print("Iterating tweets....")
             for status in tweepy.Cursor(self._api.search,
                                         q=q,
                                         until=end_date,
@@ -69,6 +68,7 @@ class TwitterExtraction:
                 # Extract information
                 tweet_object = {}
                 tweet_object['text'] = self.extract_text(status)
+                tweet_object['url'] = self.extract_url(status)
                 tweet_object['date'] = self.extract_date_of_creation(status)
                 tweet_object['geolocation'] = self.extract_geolocation(status)
                 tweet_object['coordinates'] = self.extract_coordinates(status)
@@ -82,17 +82,14 @@ class TwitterExtraction:
             sleep(60 * 15)
             return []
 
-        # Parsing tweets one by one
-        print(len(tweets))
-
         return tweets
 
     def get_tweets_multiple_query(self,
                                   query: List[str], 
                                   count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                   lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                  start_date: str = datetime.today().strftime('%Y-%m-%d'),
-                                  end_date: str = datetime.today().strftime('%Y-%m-%d'),
+                                  start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
+                                  end_date: str = datetime.date.today().strftime('%Y-%m-%d'),
                                   include_both: bool = False) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query
         
@@ -102,8 +99,8 @@ class TwitterExtraction:
         Keyword Arguments:
             count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
             lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
+            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
             include_both {bool} -- flag indicating if the tweets to retrieve will only contain all the keywords in the query or not (default: {False})
         
         Returns:
@@ -125,8 +122,6 @@ class TwitterExtraction:
         last_characters = - len(separator)
         multiple_query = multiple_query[:last_characters]
 
-        print(multiple_query)
-
         return self.get_tweets_single_query(query = multiple_query,
                                             count = count,
                                             lang = lang,
@@ -137,8 +132,8 @@ class TwitterExtraction:
                                      query: str, 
                                      count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                      lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                     start_date: str = datetime.today().strftime('%Y-%m-%d'),
-                                     end_date: str = datetime.today().strftime('%Y-%m-%d')) -> List[Dict]:
+                                     start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
+                                     end_date: str = datetime.date.today().strftime('%Y-%m-%d')) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query BUT using Bearer Token Auth from
         Twitter API to retrieve more tweets and more info
         
@@ -148,8 +143,8 @@ class TwitterExtraction:
         Keyword Arguments:
             count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
             lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
+            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
         
         Returns:
             :obj:`list` -- list of dictionaries containing information about the tweets retrieved
@@ -178,13 +173,12 @@ class TwitterExtraction:
 
         # Extract information
         if response.status_code == requests.codes.ok:
-            print(response.status_code)
-            print(response.json())
 
             # Extract information
             for status in response.json()['statuses']:
                 tweet_object = {}
                 tweet_object['text'] = self.extract_text(status)
+                tweet_object['url'] = self.extract_url(status)
                 tweet_object['date'] = self.extract_date_of_creation(status)
                 tweet_object['geolocation'] = self.extract_geolocation(status)
                 tweet_object['coordinates'] = self.extract_coordinates(status)
@@ -200,8 +194,8 @@ class TwitterExtraction:
                                               query: list, 
                                               count: int = config.DEFAULT_NUM_TWEETS_EXTRACTED,
                                               lang: str = config.DEFAULT_TWEETS_LANGUAGE,
-                                              start_date: str = datetime.today().strftime('%Y-%m-%d'),
-                                              end_date: str = datetime.today().strftime('%Y-%m-%d'),
+                                              start_date: str = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d'),
+                                              end_date: str = datetime.date.today().strftime('%Y-%m-%d'),
                                               include_both: bool = False) -> List[Dict]:
         """Retrieve tweets containing a keyword given in a query BUT using Bearer Token Auth from
         Twitter API to retrieve more tweets and more info
@@ -212,8 +206,8 @@ class TwitterExtraction:
         Keyword Arguments:
             count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
             lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.today().strftime('%Y-%m-%d')})
+            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
             include_both {bool} -- flag indicating if the tweets to retrieve will only contain all the keywords in the query or not (default: {False})
         
         Returns:
@@ -235,8 +229,6 @@ class TwitterExtraction:
         # Remove last 'OR'
         last_characters = - len(separator)
         multiple_query = multiple_query[:last_characters]
-
-        print(multiple_query)
 
         return self.get_tweets_with_bearer_token(q = multiple_query,
                                                  count = count,
@@ -260,6 +252,18 @@ class TwitterExtraction:
         if clean_text:
             text = re.sub("[^A-Za-z]", "", text) # Clean tweet
         return text
+
+    def extract_url(self, obj: dict) -> str:
+        """Extracts text from tweet object status
+        
+        Arguments:
+            obj {dict} -- status with information about a tweet from Twitter API
+        
+        Returns:
+            str -- url of the tweet
+        """
+        url = "https://twitter.com/twitter/statuses/" + str(obj.id)
+        return url
 
     def extract_date_of_creation(self, obj: dict) -> str:
         """Extracts date and time from tweet object status
