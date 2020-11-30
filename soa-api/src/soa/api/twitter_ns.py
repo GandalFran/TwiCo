@@ -114,8 +114,5 @@ class GetTweets(Resource):
         if not results:
             return handle404error(twitter_ns, 'No results were found for the given parameters.')
 
-        with open('data.json', 'w') as outfile:
-            json.dump(results, outfile)
-
         return results
             
