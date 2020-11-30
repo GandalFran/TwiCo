@@ -14,6 +14,7 @@ Twico, is the final project for the SOA subject of the Computer Science Master's
 - api: http://soa.servehttp.com:5000/soa/v1/
 
 <img src="https://github.com/GandalFran/soa-final/blob/master/soa-web-app/vue-web/public/img/twico.PNG" align="center">
+<img src="https://github.com/GandalFran/soa-final/blob/master/soa-web-app/vue-web/public/img/dashboard.PNG" align="center">
 
 ## Authors
 - Luis Blazquez Miñambres (@luisblazquezm)

@@ -8,7 +8,7 @@
 			:width="20"
 			color="#F5F8FA"
 			/>
-		<div id="cchartdiv" v-show="dataAvailable === true" ref="cchartdiv"> </div>
+		<div id="chartdiv_" v-show="dataAvailable === true" ref="chartdiv_" class="text"> </div>
 	</div>
 </template>
 
@@ -37,10 +37,23 @@ export default {
 			// format data
 			data = data.map(function(e){
 				return{
+					date: new Date(e.date),
 					cases: e.cases,
 					country: e.location.address.country,
-					id: e.location.address.country_code.toUpperCase()
+					id: e.location.address.country_code
 				};
+			});
+
+			// filter data
+			var targetdate = new Date()
+			targetdate.setDate(targetdate.getDate() - 1);
+			data = data.filter(function(e){
+				return (e.id !== null && e.cases !== null && e.date >= targetdate);
+			})
+
+			// prepare iso code
+			data.forEach(function(e){
+				e.id = e.id.toUpperCase();
 			});
 
 			// look for biggest value and calculate colors
@@ -63,7 +76,8 @@ export default {
 			colorGradient.setGradient("#E1E8ED", "#1DA1F2");
 			// build colors
 			data.forEach(function(e){
-				const index = Math.trunc(100 * e.cases / biggestValue);
+				var index = Math.trunc(100 * e.cases / biggestValue);
+				index = (index < 1) ? (1) : (index);
 				e.color = colorGradient.getColor(index);
 			})
 		},
@@ -74,7 +88,7 @@ export default {
 				am4core.useTheme(am4themesAnimated);
 
 				// Create map instance
-				var chart = am4core.create('cchartdiv', am4maps.MapChart);
+				var chart = am4core.create('chartdiv_', am4maps.MapChart);
 				chart.projection = new am4maps.projections.Miller();
 
 				// Create map polygon series for world map
@@ -142,9 +156,20 @@ export default {
 		width: 100px;
 		margin: 0 auto;
 	}
-	#cchartdiv {
+	#chartdiv_ {
 		width: 100%;
 		height: 390px;
 		background: #F5F8FA;
+	}	
+	.title {
+		color: #1DA1F2;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+		font-weight: bold;
 	}
+	.text {
+		color: #657786;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	}
+
+
 </style>

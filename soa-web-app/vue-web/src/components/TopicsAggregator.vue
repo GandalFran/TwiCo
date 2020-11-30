@@ -96,15 +96,12 @@ export default {
 	},
 	computed: {
 		dataAvailable: function() {
-			console.log(this.data);
 			return (this.data !== null && this.data !== undefined);
 		},
 		sentimentData: function () {
-			console.log(this.selectedTopic);
 			return this.data.topics.t1[this.selectedTopic].tweets;
 		},
 		tweetsData: function () {
-			console.log(this.selectedTopic);
 			return this.data.topics.t1[this.selectedTopic].tweets;
 		},
 		topicsData: function () {

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-show="dataAvailable === true" id="chartdiv" class="text"> </div>
+		<div v-show="dataAvailable === true" id="chartdiv_sentiment" class="text"> </div>
 	</div>
 </template>
 
@@ -64,11 +64,10 @@ export default {
 
 		createChart: function (data){
 
-			console.log(data);
 			am4core.ready(function(){
 				am4core.useTheme(am4themes_animated);
 
-				let chart = am4core.create("chartdiv", am4charts.PieChart);
+				let chart = am4core.create("chartdiv_sentiment", am4charts.PieChart);
 
 				chart.innerRadius = am4core.percent(50);
 				chart.data = data;
@@ -109,7 +108,7 @@ export default {
 		margin: 0 auto;
 	}
 
-	#chartdiv {
+	#chartdiv_sentiment {
 		background: #F5F8FA;
 	}
 
