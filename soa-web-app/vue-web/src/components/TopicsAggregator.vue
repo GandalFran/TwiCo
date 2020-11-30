@@ -15,36 +15,46 @@
 					md="4"
 				>
 					<v-row>
-						<v-card
-							class="mx-auto"
-							max-width="300"
-							tile
+						<v-col
+							cols="10"
+							md="10"
 						>
-							<v-list>
-								<v-subheader>Topics</v-subheader>
-								<v-list-item-group v-model="selectedTopic" color="primary">
-									<v-list-item
-										v-for="(item, i) in topicsData"
-										:key="i"
-									>
-										<v-list-item-content>
-											<v-list-item-title v-text="item"></v-list-item-title>
-										</v-list-item-content>
-									</v-list-item>
-								</v-list-item-group>
-							</v-list>
-						</v-card>
+							<v-card
+								class="mx-auto"
+								max-width="300"
+								tile
+							>
+								<v-list>
+									<v-subheader class="title" >Topics</v-subheader>
+									<v-list-item-group v-model="selectedTopic" color="primary">
+										<v-list-item
+											v-for="(item, i) in topicsData"
+											:key="i"
+										>
+											<v-list-item-content>
+												<v-list-item-title v-text="item" class="text" ></v-list-item-title>
+											</v-list-item-content>
+										</v-list-item>
+									</v-list-item-group>
+								</v-list>
+							</v-card>
+						</v-col>
 					</v-row>
 					<v-row>
-						<sentiment-chart
-							v-show="dataAvailable === true"
-							:chartData="sentimentData"
-						/>
+						<v-col
+							cols="10"
+							md="10"
+						>
+							<sentiment-chart
+								v-show="dataAvailable === true"
+								:chartData="sentimentData"
+							/>
+						</v-col>
 					</v-row>
 				</v-col>
 				<v-col
 					cols="10"
-					md="6"
+					md="8"
 				>
 					<tweets-table
 						v-show="dataAvailable === true"
@@ -106,5 +116,16 @@ export default {
 		display: block;
 		width: 100px;
 		margin: 0 auto;
+	}
+
+	.text {
+		color: #1DA1F2;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	}
+
+	.title {
+		color: #1DA1F2;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+		font-weight: bold;
 	}
 </style>

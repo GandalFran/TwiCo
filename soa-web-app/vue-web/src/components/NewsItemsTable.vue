@@ -23,11 +23,10 @@
 							v-for="(item, i) in props.items"
 							:key="i"
 							cols="12"
-							sm="6"
-							md="4"
-							lg="3"
+							md="3"
 						>
 							<v-card
+								outlined
 								class="mx-auto"
 								max-width="344"
 								height="600"

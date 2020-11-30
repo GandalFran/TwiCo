@@ -18,6 +18,7 @@
 							md="3"
 						>
 							<v-card
+								outlined
 								class="mx-auto"
 								max-width="344"
 								height="500"
