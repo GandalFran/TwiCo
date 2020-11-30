@@ -89,11 +89,12 @@ class NewsAndTwitterExtraction:
             topics['topics'] = list(set(topics['topics']))
 
         ## 3. Search tweets containing 'covid' keywords and topics extracted
+        topic_results = {}
         twitter_hdlr = TwitterExtraction()
         sentiment_hdlr = SentimentAnalyzer()
+
         for topic in topics['topics']:
 
-            topic_result = {}
             twitter_search_query_list = [query, topic]
 
             # Extract from twitter api
@@ -103,8 +104,6 @@ class NewsAndTwitterExtraction:
                                                                  start_date = from_date,
                                                                  end_date = to_date,
                                                                  include_both=include_both)
-            topic_result['name'] = 'AND '.join(twitter_search_query_list)
-
             ## 4. Sentiment analysis on text
             twitter_results = []
             for tweet in list_tweets:
@@ -112,14 +111,11 @@ class NewsAndTwitterExtraction:
                                         'text': tweet['text'], 
                                         'sentiment': sentiment_hdlr.analyze(tweet['text'])['sentiment']})
 
-            topic_result['tweets'] = twitter_results
-            final_results.append(topic_result)
+            topic_results[topic] = twitter_results
 
         results = {
             'news': list_news,
-            'topics':{
-                't1': final_results
-            }
+            'topics': topic_results
         }
 
         return results
