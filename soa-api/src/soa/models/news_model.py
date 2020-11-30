@@ -3,12 +3,16 @@
 # Copyright 2020 Luis Blazquez Miñambres (@luisblazquezm), Miguel Cabezas Puerto (@MiguelCabezasPuerto), Óscar Sánchez Juanes (@oscarsanchezj) and Francisco Pinto-Santos (@gandalfran)
 # See LICENSE for details.
 
-from soa import config
 import datetime
 import time
 import random
 import json
+import requests
+import re
+import urllib
+
 from typing import List, Dict, Any
+from soa import config
 
 class NewsExtraction:
 
@@ -92,7 +96,7 @@ class NewsExtraction:
         time.sleep(random.randint(config.REQUEST_MIN_TIME_WAIT, config.REQUEST_MAX_TIME_WAIT))
 
         # Build url to request
-        url = config.ENDPOINT_NEWS_EVERYTHING.replace('{query}', q).replace('{from_date}', from_date).replace('{to_date}', to_date).replace('{api_key}', config.NEWSAPI_TOKEN)
+        url = config.ENDPOINT_NEWS_EVERYTHING.replace('{query}', urllib.parse.urlencode({'q': q})).replace('{from_date}', from_date).replace('{to_date}', to_date).replace('{api_key}', config.NEWSAPI_TOKEN)
 
         # Choose a random user agent
         user_agent = random.choice(config.USER_AGENT_LIST)
