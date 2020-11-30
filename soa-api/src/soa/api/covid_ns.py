@@ -28,8 +28,8 @@ class GetCovidCasesWorldWide(Resource):
     @api.marshal_with(covid_model, code=200, description='OK', as_list=True)
     def get(self):
         """
-        Returns a JSON array with the information of the covid positive cases per country in the world.
-        Data is extracted via CKAN protocol from https://opendata-ajuntament.barcelona.cat/data/es/dataset/indicadors-covid19-bcn.
+        Returns a JSON array with the information of the covid positive cases per neighbourhood in the Barcelona city.
+        Data is extracted via CKAN protocol from https://data.europa.eu/euodp/es/data/dataset/covid-19-coronavirus-data.
         """
 
         # retrieve and chek arguments
@@ -86,8 +86,8 @@ class GetCovidCasesBarcelona(Resource):
     @api.marshal_with(covid_model, code=200, description='OK', as_list=True)
     def get(self):
         """
-        Returns a JSON array with the information of the covid positive cases per neighbourhood in the Barcelona city.
-        Data is extracted via CKAN protocol from https://data.europa.eu/euodp/es/data/dataset/covid-19-coronavirus-data.
+        Returns a JSON array with the information of the covid positive cases per country in the world.
+        Data is extracted via CKAN protocol from https://opendata-ajuntament.barcelona.cat/data/es/dataset/indicadors-covid19-bcn.
         """
 
         # retrieve and chek arguments
