@@ -39,7 +39,7 @@ news_model = api.model("News information", {
     'content': fields.String(example='covid', description='Content of the news')
 }, description='Information of News data in the API.')
 
-twitter_model = api.model('Extraction information', {
+topics_model = api.model('Extraction information', {
 	'news': fields.Nested(news_model, description='News extracted from the query given.', as_list=True),
 	'topics': fields.Nested(topics_model_1, description='Topics and twitter information extracted from the query given.', as_list=True)
 }, description='Result of Twitter and News extraction and topic modelling and sentiment analysis')
