@@ -8,7 +8,7 @@
 			:width="20"
 			color="#F5F8FA"
 			/>
-		<MglMap id="map" ref="map" v-if="dataAvailable === true"
+		<mgl-map id="map" ref="map" v-if="dataAvailable === true"
 			:accessToken="accessToken"
 			:mapStyle.sync="mapStyle"
 			:sourceId="sourceId"
@@ -17,22 +17,23 @@
 			:maxzoom="initialZoom"
 			:center="initialCoordinates"
 			>
-			<MglGeojsonLayer
+			<mgl-geojson-layer
 				:layerId="layerId"
 				:layer="layerProps"
 				:sourceId="sourceId"
 				:source="geoJsonMapData"
 			/>
-		</MglMap>
+		</mgl-map>
 	</v-container>
 </template>
 
 <script>
 import Mapbox from "mapbox-gl";
+import Gradient from "javascript-color-gradient";
 import { MglMap, MglGeojsonLayer } from "vue-mapbox";
 
 export default {
-	name: 'CovidChart',
+	name: 'BarcelonaCovidCasesChart',
 	props: ['covidData', 'initialZoom', 'initialCoordinates'],
 	components: {
 		MglMap,
@@ -119,34 +120,10 @@ export default {
 			};
 		},
 		layerProps: function () {
-			/*return {
-				'type': 'heatmap',
-				'source': this.sourceId,
-				'minzoom': 1,
-				'maxzoom': this.initialZoom,
-				'paint':{
-					'heatmap-weight': {
-						property: 'cases',
-						type: 'identity'
-					},
-					'heatmap-color': [
-						'interpolate',
-						['linear'],
-						['heatmap-density'],
-						0, 'rgba(43,131,186,0)',
-						0.2, 'rgb(171,221,164)',
-						0.4, 'rgb(255,255,191)',
-						0.6, 'rgb(253,174,97)',
-						0.8, 'rgb(215,25,28)'
-					],
-					'heatmap-radius': {
-						stops: [
-							[3, 15],
-							[15, 20]
-						]
-					},
-				},
-			};*/
+			const colorGradient = new Gradient();
+			colorGradient.setMidpoint(5);
+			colorGradient.setGradient("#E1E8ED", "#1DA1F2");
+
 			return {
 				type: 'heatmap',
 				'source': this.sourceId,
@@ -173,11 +150,12 @@ export default {
 						'interpolate',
 						['linear'],
 						['heatmap-density'],
-						0, 'rgba(236,222,239,0)',
-						0.2, 'rgb(208,209,230)',
-						0.4, 'rgb(166,189,219)',
-						0.6, 'rgb(103,169,207)',
-						0.8, 'rgb(28,144,153)'
+						0, 'rgba(0,0,0,0)',
+						0.1, colorGradient.getColor(1),
+						0.2, colorGradient.getColor(2),
+						0.4, colorGradient.getColor(3),
+						0.6, colorGradient.getColor(4),
+						0.8, colorGradient.getColor(5)
 					],
 					// increase radius as zoom increases
 					'heatmap-radius': {
