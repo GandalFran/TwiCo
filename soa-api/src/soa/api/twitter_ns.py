@@ -5,6 +5,7 @@
 
 import datetime
 from flask_restx import Resource
+import json
 
 from soa import config
 from soa.run import api
@@ -71,12 +72,8 @@ class GetTweets(Resource):
 
         # Check arguments
         
-        try:
-            q = query.split(",")
-            if type(q) != list:
-                return handle400error(twitter_ns, 'The provided query is not a list.')
-        except:
-            return handle400error(twitter_ns, 'The provided query is not a list.')
+        if not query:
+            return handle400error(twitter_ns, 'The provided query is empty')
 
         if count_tweets <= 0:
             return handle400error(twitter_ns, 'The provided number of tweets to extract is 0.')
@@ -101,20 +98,24 @@ class GetTweets(Resource):
             return handle400error(twitter_ns, 'The date interval provided in from_date and to_date arguments is not consistent.')
 
         # retrieve covid cases
+        results = []
         try:
             extractor = NewsAndTwitterExtraction()
-            tweets = extractor.extract(query=q, 
+            results = extractor.extract(query=query, 
                                        count_tweets=count_tweets,
                                        count_news=count_news,
                                        lang=lang,
-                                       start_date=from_date_dt,
-                                       end_date=to_date_dt)
+                                       from_date=from_date_dt,
+                                       to_date=to_date_dt)
         except:
             return handle500error(twitter_ns)
 
         # if there are no tweets found about the topic given, return 4040 error
-        if not tweets:
+        if not results:
             return handle404error(twitter_ns, 'No results were found for the given parameters.')
 
-        return tweets
+        with open('data.json', 'w') as outfile:
+            json.dump(results, outfile)
+
+        return results
             

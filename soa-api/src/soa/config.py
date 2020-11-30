@@ -38,7 +38,7 @@ MAPBOX_TOKEN = "pk.eyJ1IjoibWlndWVsY2FiZXphc3B1ZXJ0byIsImEiOiJja2g5NG80Nm4wcXVpM
 NEWSAPI_TOKEN = "5d428c4a155f4c00b4c045fe069ff824"
 DEFAULT_NEWS_COUNTRY = 'gb'
 ENDPOINT_RECENT_HEADLINES = "http://newsapi.org/v2/top-headlines?country={code}&category={query}&apiKey={api_key}"
-ENDPOINT_NEWS_EVERYTHING = "http://newsapi.org/v2/everything?q={query}&from={from_date}&to={to_date}8&sortBy=popularity&apiKey={api_key}"
+ENDPOINT_NEWS_EVERYTHING = "http://newsapi.org/v2/everything?{query}&from={from_date}&to={to_date}8&sortBy=popularity&apiKey={api_key}"
 LIST_OF_COUNTRY_CODES = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch",
 						"cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr",
 						"hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr",
