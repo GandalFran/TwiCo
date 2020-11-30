@@ -22,7 +22,7 @@ export class ApiSOADataController{
     * @param application - the express aplication.
     */
     public registerController(application: Express.Express): any {
-        application.post("/data/twitter", this.twitter.bind(this));
+        application.post("/data/topics", this.topics.bind(this));
         application.post("/data/covid/world", this.covid.bind(this));
         application.post("/data/covid/barcelona", this.covidBarcelona.bind(this));
     }
@@ -82,16 +82,16 @@ export class ApiSOADataController{
     }
 
     /** 
-    * Retrieves the twitter data.
+    * Retrieves the topics data.
     * @param request - the express request.
     * @param response - the express response.
     */
-    public async twitter(request: Express.Request, response: Express.Response) {
+    public async topics(request: Express.Request, response: Express.Response) {
 
         // retrieve data
         let result = null;
         try{
-            result = await ApiSOADataController.apiSOADataModel.twitter();
+            result = await ApiSOADataController.apiSOADataModel.topics();
         }catch(e){
             response.status(STATUS_INTERNAL_SERVER_ERROR);
             response.contentType(CONTENT_APPLICATION_JSON);

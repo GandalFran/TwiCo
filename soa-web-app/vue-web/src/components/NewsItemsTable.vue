@@ -158,10 +158,16 @@ export default {
 		width: 100px;
 		margin: 0 auto;
 	}
-
-	.text {
+	
+	.title {
 		color: #1DA1F2;	
 		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 		font-weight: bold;
 	}
+	.text {
+		color: #657786;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	}
+
+
 </style>

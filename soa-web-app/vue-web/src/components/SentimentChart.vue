@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-show="dataAvailable === true" id="chartdiv"> </div>
+		<div v-show="dataAvailable === true" id="chartdiv" class="text"> </div>
 	</div>
 </template>
 
@@ -45,9 +45,16 @@ export default {
 				}
 			});
 
+			const colors = {
+				positive: '#6bff77',
+				neutral: '#6ba4ff',
+				negative: '#ff726b',
+			};
+
 			const parsed = Object.keys(elementsBySentiment).map(function(e){
 				return {
 					name: e,
+					color: colors[e],
 					value: elementsBySentiment[e],
 				}
 			});
@@ -72,7 +79,8 @@ export default {
 				pieSeries.dataFields.category = "name";
 				pieSeries.slices.template.strokeWidth = 2;
 				pieSeries.slices.template.strokeOpacity = 1;
-
+				pieSeries.slices.template.propertyFields.fill = 'color'
+				
 				// This creates initial animation
 				pieSeries.hiddenState.properties.opacity = 1;
 				pieSeries.hiddenState.properties.endAngle = -90;
@@ -104,4 +112,15 @@ export default {
 	#chartdiv {
 		background: #F5F8FA;
 	}
+
+	.title {
+		color: #1DA1F2;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+		font-weight: bold;
+	}
+	.text {
+		color: #657786;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	}
+
 </style>

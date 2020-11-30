@@ -42,11 +42,11 @@ export class ApiSOADataModel {
     }
 
     /** 
-    * Retrieves twitter information.
+    * Retrieves topics information.
     * @return twitter information.
     */
-    public async twitter(): Promise<Array<any>>{
-        const uri = `${Config.getInstance().apiBaseUrl}/twitter/tweets?q=covid`;
+    public async topics(): Promise<Array<any>>{
+        const uri = `${Config.getInstance().apiBaseUrl}/topics/socialmedia?q=covid`;
         var rawData = await this.doRequest(uri);
         if(rawData !== null){
             rawData = JSON.parse(rawData);

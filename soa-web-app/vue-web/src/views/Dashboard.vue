@@ -142,7 +142,7 @@ export default {
 				{"x":5,"y":0,"w":5,"h":20,"i":"1", "chartType": "barcelona-covid-cases-chart"},
 				{"x":0,"y":20,"w":5,"h":20,"i":"2", "chartType": "world-covid-deaths-chart"}, 
 				{"x":5,"y":20,"w":5,"h":20,"i":"3", "chartType": "barcelona-covid-deaths-chart"},
-				{"x":0,"y":40,"w":10,"h":40,"i":"5", "chartType": "topics-aggregator"},
+				{"x":0,"y":40,"w":10,"h":28,"i":"5", "chartType": "topics-aggregator"},
 				{"x":0,"y":80,"w":10,"h":40,"i":"4", "chartType": "newsitems-table"},
 			],
 			barcelonaMapConfig: {
@@ -179,13 +179,8 @@ export default {
 			}).catch(e => { console.log(e); });
 		},
 		reloadTopicsData: function (){
-			/*const uri = this.baseUrl + "/data/twitter";
+			const uri = this.baseUrl + "/data/topics";
 			axios.post(uri, {}).then(response => {
-				const data = response.data;
-				this.topicsData = data;
-			}).catch(e => { console.log(e); });*/
-			axios.get('http://localhost:5000/soa/v1/topics/socialmedia?q=covid').then(response => {
-				console.log(response.data);
 				const data = response.data;
 				this.topicsData = data;
 			}).catch(e => { console.log(e); });

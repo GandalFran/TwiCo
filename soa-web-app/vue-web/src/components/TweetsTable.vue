@@ -21,31 +21,15 @@
 								outlined
 								class="mx-auto"
 								max-width="344"
-								height="500"
+								height="300"
+								:color="item.color"
+								target="_blank"
+								:href="item.url" 
 							>
-								<v-card-text class="text"
+								<v-card-text class="text text-center"
 									v-text="item.text"
-									:color="item.color"
 								/>
 
-								<v-card-text v-text="item.description" class="text" />
-
-								<v-divider />
-								
-								<v-card-text v-text="item.sentiment" class="text" />
-
-								<v-divider />
-
-								<v-card-actions >
-									<v-btn 
-										text
-										color="#1DA1F2"
-										target="_blank"
-										:href="item.url" 
-									>
-										<p class="text">Go to tweet</p>
-									</v-btn>
-								</v-card-actions>
 							</v-card>
 						</v-col>
 					</v-row>
@@ -99,9 +83,9 @@ export default {
 			}
 
 			const colors = {
-				positive: '#00FF00',
-				neutral: '#00FF00',
-				negative: '#FF0000',
+				positive: '#6bff77',
+				neutral: '#6ba4ff',
+				negative: '#ff726b',
 			};
 
 			const tweets = data.map(function(e){
@@ -113,8 +97,9 @@ export default {
 				};
 			});
 
-			console.log(tweets);
-
+			// set page to one when data is served
+			this.page = 1;
+			
 			return tweets;
 		},
 
@@ -152,8 +137,14 @@ export default {
 		margin: 0 auto;
 	}
 
-	.text {
+	.title {
 		color: #1DA1F2;	
 		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+		font-weight: bold;
 	}
+	.text {
+		color: #657786;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	}
+
 </style>

@@ -8,7 +8,7 @@
 			:width="20"
 			color="#F5F8FA"
 		/>
-		<v-container>
+		<v-container v-if="dataAvailable === true">
 			<v-row>
 				<v-col
 					cols="10"
@@ -21,11 +21,10 @@
 						>
 							<v-card
 								class="mx-auto"
-								max-width="300"
 								tile
 							>
 								<v-list>
-									<v-subheader class="title" >Topics</v-subheader>
+									<v-subheader class="title" color="#1DA1F2" >Topics</v-subheader>
 									<v-list-item-group v-model="selectedTopic" color="primary">
 										<v-list-item
 											v-for="(item, i) in topicsData"
@@ -45,10 +44,16 @@
 							cols="10"
 							md="10"
 						>
-							<sentiment-chart
-								v-show="dataAvailable === true"
-								:chartData="sentimentData"
-							/>
+
+							<v-card
+								class="mx-auto"
+								tile
+							>
+								<sentiment-chart
+									v-show="dataAvailable === true"
+									:chartData="sentimentData"
+								/>
+							</v-card>
 						</v-col>
 					</v-row>
 				</v-col>
@@ -91,6 +96,7 @@ export default {
 	},
 	computed: {
 		dataAvailable: function() {
+			console.log(this.data);
 			return (this.data !== null && this.data !== undefined);
 		},
 		sentimentData: function () {
@@ -119,7 +125,7 @@ export default {
 	}
 
 	.text {
-		color: #1DA1F2;	
+		color: #657786;	
 		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 	}
 
@@ -127,5 +133,10 @@ export default {
 		color: #1DA1F2;	
 		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 		font-weight: bold;
+	}
+
+	.v-subheader {
+		font-weight: bold;
+		color: #1DA1F2 !important;
 	}
 </style>
