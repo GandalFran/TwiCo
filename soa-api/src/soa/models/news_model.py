@@ -65,8 +65,6 @@ class NewsExtraction:
             news_item['publishedAt'] = self._format_date(news_item['publishedAt'])
             news.append(news_item)
 
-
-        print('News retrieved: ', len(news))
         return news
 
     def get_news_everything(self,
@@ -123,7 +121,6 @@ class NewsExtraction:
             news_item['content'] = self.__clean_data(news_item['content'])
             news.append(news_item)
 
-        print('News retrieved: ', len(news))
         return news
 
     def _format_title(self, title: str) -> str:

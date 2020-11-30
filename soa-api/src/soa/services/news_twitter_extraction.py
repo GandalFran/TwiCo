@@ -62,9 +62,7 @@ class NewsAndTwitterExtraction:
             query = self.parse_query(query=query, include_both=include_both)
 
         ## 1. Extract news from NEWS API
-        print("========= TOPIC CHOSEN " + query + "=========")
         news_hdlr = NewsExtraction()
-        print("Extracting news...")
         list_news = news_hdlr.get_news_everything(q=query,
                                                   count=count_news,
                                                   lang=lang)
@@ -77,7 +75,6 @@ class NewsAndTwitterExtraction:
 
         ## 2. Analyze and get topics from list of news
         topics_hdlr = TopicModellingExtraction()
-        print("Extracting topics...")
         text_query = ''.join([ news['content'] for news in list_news if news['content'] is not None])
         printable = set(string.printable)
         text_query = ''.join(filter(lambda x: x in printable, text_query))
@@ -94,15 +91,12 @@ class NewsAndTwitterExtraction:
         ## 3. Search tweets containing 'covid' keywords and topics extracted
         twitter_hdlr = TwitterExtraction()
         sentiment_hdlr = SentimentAnalyzer()
-        print("Extracting tweets...")
         for topic in topics['topics']:
 
             topic_result = {}
             twitter_search_query_list = [query, topic]
 
             # Extract from twitter api
-            print("····· FROM API")
-            print(twitter_search_query_list)
             list_tweets = twitter_hdlr.get_tweets_multiple_query(query=twitter_search_query_list, 
                                                                  count=count_tweets,
                                                                  lang=lang,
@@ -113,7 +107,6 @@ class NewsAndTwitterExtraction:
 
             ## 4. Sentiment analysis on text
             twitter_results = []
-            print("····· CALCULATING SENTIMENT")
             for tweet in list_tweets:
                 twitter_results.append({'url': tweet['url'], 
                                         'text': tweet['text'], 
@@ -128,8 +121,6 @@ class NewsAndTwitterExtraction:
                 't1': final_results
             }
         }
-
-        print("\n<<<<<<RETURNING RESULTS>>>>\n")
 
         return results
 
