@@ -31,7 +31,7 @@
 											:key="i"
 										>
 											<v-list-item-content>
-												<v-list-item-title v-text="item" class="text" ></v-list-item-title>
+												<v-list-item-title v-text="item.name" class="text" ></v-list-item-title>
 											</v-list-item-content>
 										</v-list-item>
 									</v-list-item-group>
@@ -90,8 +90,19 @@ export default {
 	},
 	methods: {
 
-		createChart: function (data){
+		prepareTopics: function (data){
+			var topics = Object.keys(data).map(function(e){
+				return {
+					name: e,
+					tweets: data[e]
+				};
+			})
 
+			topics.sort(function(e1, e2){
+				return e1.name.localeCompare(e2.name);
+			});
+
+			return topics;
 		},
 	},
 	computed: {
@@ -99,15 +110,16 @@ export default {
 			return (this.data !== null && this.data !== undefined);
 		},
 		sentimentData: function () {
-			return this.data.topics.t1[this.selectedTopic].tweets;
+			const topics = this.prepareTopics(this.data.topics);
+			return topics[this.selectedTopic].tweets;
 		},
 		tweetsData: function () {
-			return this.data.topics.t1[this.selectedTopic].tweets;
+			const topics = this.prepareTopics(this.data.topics);
+			return topics[this.selectedTopic].tweets;
 		},
 		topicsData: function () {
-			return this.data.topics.t1.map(function(e){
-				return e.name.replace('covidAND ','');
-			});
+			const topics = this.prepareTopics(this.data.topics);
+			return topics;
 		}
 
 	},
