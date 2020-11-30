@@ -197,7 +197,7 @@ export default {
 		}
 	},
 	created: function() {
-		//this.checkAuth();
+		this.checkAuth();
 		this.reloadDashBoard();
 	}
 }
