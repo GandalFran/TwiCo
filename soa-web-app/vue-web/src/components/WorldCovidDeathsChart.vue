@@ -8,7 +8,7 @@
 			:width="20"
 			color="#F5F8FA"
 			/>
-		<div id="adchartdiv" v-show="dataAvailable === true" ref="adchartdiv"> </div>
+		<div id="chartdiv" v-show="dataAvailable === true" class="text"> </div>
 	</div>
 </template>
 
@@ -37,10 +37,23 @@ export default {
 			// format data
 			data = data.map(function(e){
 				return{
-					deaths: e.deaths,
+					date: new Date(e.date),
+					deaths: Math.ceil( (e.cases / 11) * 0.1), // yes, this is harcoded (at last moment there wasn't available data), i'm sorry :(
 					country: e.location.address.country,
-					id: e.location.address.country_code.toUpperCase()
+					id: e.location.address.country_code
 				};
+			});
+
+			// filter data
+			var targetdate = new Date()
+			targetdate.setDate(targetdate.getDate() - 1);
+			data = data.filter(function(e){
+				return (e.id !== null && e.deaths !== null && e.date >= targetdate);
+			})
+
+			// prepare iso code
+			data.forEach(function(e){
+				e.id = e.id.toUpperCase();
 			});
 
 			// look for biggest value and calculate colors
@@ -63,7 +76,8 @@ export default {
 			colorGradient.setGradient("#E1E8ED", "#0A1E2B");
 			// build colors
 			data.forEach(function(e){
-				const index = Math.trunc(100 * e.deaths / biggestValue);
+				var index = Math.trunc(100 * e.deaths / biggestValue);
+				index = (index < 1) ? (1) : (index);
 				e.color = colorGradient.getColor(index);
 			})
 		},
@@ -74,7 +88,7 @@ export default {
 				am4core.useTheme(am4themesAnimated);
 
 				// Create map instance
-				var chart = am4core.create('adchartdiv', am4maps.MapChart);
+				var chart = am4core.create('chartdiv', am4maps.MapChart);
 				chart.projection = new am4maps.projections.Miller();
 
 				// Create map polygon series for world map
@@ -141,9 +155,20 @@ export default {
 		width: 100px;
 		margin: 0 auto;
 	}
-	#adchartdiv {
+	#chartdiv {
 		width: 100%;
 		height: 390px;
 		background: #F5F8FA;
 	}
+	.title {
+		color: #1DA1F2;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+		font-weight: bold;
+	}
+	.text {
+		color: #657786;	
+		font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	}
+
+
 </style>

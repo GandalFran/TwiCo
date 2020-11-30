@@ -91,9 +91,12 @@ export default {
 					}
 				});
 
-				mappedData.sort(function(a, b){ 
-					return a.date - b.date; 
-				});
+				// filter data
+				var targetdate = new Date()
+				targetdate.setDate(targetdate.getDate() - 1);
+				mappedData = mappedData.filter(function(e){
+					return (e.date >= targetdate);
+				})
 
 				var geojsonSeries = this.seriesToGeoJson(mappedData);
 
