@@ -10,11 +10,12 @@ import * as Path from "path";
 import Express from "express";
 import * as HTTPS from "https";
 import Passport from 'passport';
+import Session from 'express-session';
 import Compression from "compression";
 import CookieParser from 'cookie-parser';
 import CookieSession from 'cookie-session';
-import Session from 'express-session';
 import * as BodyParser from 'body-parser';
+import GitHubStrategy from 'passport-github2';
 import GoogleStrategy from 'passport-google-oauth';
 
 import { log } from "./log";
@@ -96,10 +97,12 @@ export class Application {
     public configurePassportAuth(){
         this.application.use(Passport.initialize());
         this.application.use(Passport.session());
+
+        // google oauth
         Passport.use(new GoogleStrategy.OAuth2Strategy({
-            clientID: Config.getInstance().auth.clientId,
-            callbackURL: Config.getInstance().auth.callback,
-            clientSecret: Config.getInstance().auth.clientSecret
+            clientID: Config.getInstance().auth.google.clientId,
+            callbackURL: Config.getInstance().auth.google.callback,
+            clientSecret: Config.getInstance().auth.google.clientSecret
         }, function(token, refreshToken, profile, done){
             return done(null, {
                 profile: profile,
@@ -107,6 +110,20 @@ export class Application {
                 refreshToken: refreshToken
             });
         }));
+
+        // github oauth
+        Passport.use(new GitHubStrategy({
+            clientID: Config.getInstance().auth.github.clientId,
+            callbackURL: Config.getInstance().auth.github.callback,
+            clientSecret: Config.getInstance().auth.github.clientSecret
+        }, function(token, refreshToken, profile, done) {
+            return done(null, {
+                profile: profile,
+                token: token,
+                refreshToken: refreshToken
+            });
+        }));
+
         Passport.serializeUser((user, done) => {
             done(null, user);
         });

@@ -18,6 +18,8 @@ export class AuthController{
     * @param application - the express aplication.
     */
     public registerController(application: Express.Express): any {
+        
+        // google login
         application.get("/auth/google",
             Passport.authenticate('google', {
                 scope: ['https://www.googleapis.com/auth/plus.login',
@@ -26,10 +28,22 @@ export class AuthController{
         );
         application.get("/auth/google/callback", 
             Passport.authenticate('google', {failureRedirect: '/#/forbidden' }), 
-            this.authCallback.bind(this)
+            this.googleAuthCallback.bind(this)
         );
         application.get("/auth/google/logout", this.logout.bind(this));
         
+        // github login
+        application.get('/auth/github',
+            Passport.authenticate('github', {
+                scope: [ 'user:email' ] 
+            })
+        );
+        application.get('/auth/github/callback', 
+            Passport.authenticate('github', { failureRedirect: '/#/forbidden' }), 
+            this.githubAuthCallback.bind(this)
+        );
+
+        // auth check
         application.post("/auth/check", this.checkAuth.bind(this));
     }
 
@@ -38,14 +52,36 @@ export class AuthController{
     * @param request - the express request.
     * @param response - the express response.
     */
-    public async authCallback(request: Express.Request, response: Express.Response) {
+    public async googleAuthCallback(request: Express.Request, response: Express.Response) {
         const user: any = request.user;
         const email: string = user.profile.emails[0].value;
         
         if(WhiteList.isInWhitelist(email)){
             request.session.user = {
                 id: user.profile.id,
-                email: user.profile.emails[0].value
+                email: email
+            }
+            request.session.token = user.token;
+            response.redirect('/#/dashboard');
+        }else{
+            response.redirect('/#/forbidden');
+        }
+    }
+
+    /** 
+    * Callback endpoint for GitHub OAuth2.0. Here the user login session is generated.
+    * @param request - the express request.
+    * @param response - the express response.
+    */
+    public async githubAuthCallback(request: Express.Request, response: Express.Response) {
+        const user: any = request.user;
+        console.log(user)
+        const email: string = user.profile.email;
+        
+        if(WhiteList.isInWhitelist(email)){
+            request.session.user = {
+                id: user.profile.id,
+                email: email
             }
             request.session.token = user.token;
             response.redirect('/#/dashboard');
