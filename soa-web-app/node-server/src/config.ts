@@ -49,18 +49,18 @@ export class HttpsConfig extends HttpConfig{
     }
 }
 
-/** Class to store the Google OAuth2.0. */
-export class GoogleAuthConfig {
+/** Class to store the OAuth2.0 flow info. */
+export class AuthConfig {
 
-    /** Google OAuth2.0 application client id. */
+    /** OAuth2.0 application client id. */
     public clientId: string;
-    /** Google OAuth2.0 application client secret. */
+    /**OAuth2.0 application client secret. */
     public clientSecret: string;
-    /** Google OAuth2.0 application client callback endpoint to receive the auth params and tokens. */
+    /**OAuth2.0 application client callback endpoint to receive the auth params and tokens. */
     public callback: string;
 
     /**
-    * Create a GoogleAuthConfig.
+    * Create a AuthConfig.
     */
     constructor(){
         this.clientId = "";
@@ -120,12 +120,20 @@ export class Config {
             config.https.certFile = rawConfig.https.certFile;
         }
 
-        // load auth info
-        config.auth = new GoogleAuthConfig();
-        if (typeof rawConfig === "object" && typeof rawConfig.auth === "object") {
-            config.auth.clientId = rawConfig.auth.id;
-            config.auth.callback = rawConfig.auth.callback;
-            config.auth.clientSecret = rawConfig.auth.secret;
+        // load google auth info
+        config.auth.google = new AuthConfig();
+        if (typeof rawConfig === "object" && typeof rawConfig.auth === "object" && typeof rawConfig.auth.google === "object") {
+            config.auth.google.clientId = rawConfig.auth.google.id;
+            config.auth.google.callback = rawConfig.auth.google.callback;
+            config.auth.google.clientSecret = rawConfig.auth.google.secret;
+        }
+
+        // load github auth info
+        config.auth.github = new AuthConfig();
+        if (typeof rawConfig === "object" && typeof rawConfig.auth === "object" && typeof rawConfig.auth.github === "object") {
+            config.auth.github.clientId = rawConfig.auth.github.id;
+            config.auth.github.callback = rawConfig.auth.github.callback;
+            config.auth.github.clientSecret = rawConfig.auth.github.secret;
         }
     }
 
@@ -140,5 +148,8 @@ export class Config {
     /** HTTPS configuration. */
     public https: HttpsConfig;
     /** Google OAuth2.0 configuration. */
-    public auth: GoogleAuthConfig;
+    public auth: any = {
+        google: null,
+        github: null,
+    };
 }
