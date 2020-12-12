@@ -16,11 +16,18 @@
 			<v-btn 
 				raised
 				color="#1DA1F2"
-				@click="login"
+				@click="loginGoogle"
 			>	
-				<p class="mytext" >Dashboard</p>
+				<p class="mytext" >Google</p>
 			</v-btn>
 
+			<v-btn 
+				raised
+				color="#1DA1F2"
+				@click="loginGitHub"
+			>	
+				<p class="mytext" >GitHub</p>
+			</v-btn>
 		</v-toolbar>
 
 		<div :id="particles.id" class="particles-js theBackground text-center">
@@ -138,8 +145,12 @@ export default {
 		});
 	},
 	methods: {
-		login() {
+		loginGoogle() {
 			window.location = this.baseUrl + "/auth/google";
+		},
+
+		loginGitHub() {
+			window.location = this.baseUrl + "/auth/github";
 		},
 
 		initParticleJS(

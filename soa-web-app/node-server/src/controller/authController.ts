@@ -75,9 +75,8 @@ export class AuthController{
     */
     public async githubAuthCallback(request: Express.Request, response: Express.Response) {
         const user: any = request.user;
-        console.log(user)
-        const email: string = user.profile.email;
-        
+        const email: string = user.profile.emails[0].value;
+
         if(WhiteList.isInWhitelist(email)){
             request.session.user = {
                 id: user.profile.id,
