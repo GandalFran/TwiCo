@@ -125,7 +125,7 @@ export class Config {
         if (typeof rawConfig === "object" && typeof rawConfig.auth === "object" && typeof rawConfig.auth.google === "object") {
             config.auth.google.clientId = rawConfig.auth.google.id;
             config.auth.google.callback = rawConfig.auth.google.callback;
-            config.auth.google.clientSecret = rawConfig.google.auth.secret;
+            config.auth.google.clientSecret = rawConfig.auth.google.secret;
         }
 
         // load github auth info

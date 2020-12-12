@@ -23,6 +23,6 @@
             "id": "088435c6236d21c6c4fe",
             "secret": "05ec9b4f795e229bfa9f72351aaab8ad8e8498ae",
             "callback": "https://soa.servehttp.com/auth/github/callback"            
-        },
+        }
     }
 }

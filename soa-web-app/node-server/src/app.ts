@@ -103,7 +103,7 @@ export class Application {
             clientID: Config.getInstance().auth.google.clientId,
             callbackURL: Config.getInstance().auth.google.callback,
             clientSecret: Config.getInstance().auth.google.clientSecret
-        }, function(token, refreshToken, profile, done){
+        }, function(token:any, refreshToken:any, profile:any, done:any){
             return done(null, {
                 profile: profile,
                 token: token,
@@ -112,11 +112,11 @@ export class Application {
         }));
 
         // github oauth
-        Passport.use(new GitHubStrategy({
+        Passport.use(new GitHubStrategy.Strategy({
             clientID: Config.getInstance().auth.github.clientId,
             callbackURL: Config.getInstance().auth.github.callback,
             clientSecret: Config.getInstance().auth.github.clientSecret
-        }, function(token, refreshToken, profile, done) {
+        }, function(token:any, refreshToken:any, profile:any, done:any) {
             return done(null, {
                 profile: profile,
                 token: token,
