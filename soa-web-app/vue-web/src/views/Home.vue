@@ -12,22 +12,33 @@
 			
 			<v-spacer />
 			<v-spacer />
-			
+
 			<v-btn 
 				raised
-				color="#1DA1F2"
+				color="#E1E8ED"
 				@click="loginGoogle"
 			>	
-				<p class="mytext" >Google</p>
+				<v-img 
+					contain
+					width="20px"
+					height="20px"
+					src="img/google.png"
+				/>
 			</v-btn>
 
 			<v-btn 
 				raised
-				color="#1DA1F2"
+				color="#E1E8ED"
 				@click="loginGitHub"
 			>	
-				<p class="mytext" >GitHub</p>
+				<v-img 
+					contain
+					width="20px"
+					height="20px"
+					src="img/github.png"
+				/>
 			</v-btn>
+
 		</v-toolbar>
 
 		<div :id="particles.id" class="particles-js theBackground text-center">
@@ -73,6 +84,7 @@ export default {
 	name: "Home",
 	data() {
 		return {
+			mydialog: false,
 			baseUrl: "https://soa.servehttp.com",
 			particles: {
 				id: "particles-instance-" + Math.floor(Math.random() * 5000),
@@ -312,7 +324,7 @@ export default {
 }
 
 .mytitle {
-	color: #1DA1F2;  
+	color: #1DA1F2;	
 	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
 	font-weight: bold;
 }
@@ -321,6 +333,12 @@ export default {
 	color:#F5F8FA;
 	font-weight: bold;
 	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+}
+
+.v-dialog > .v-card > .v-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 </style>
