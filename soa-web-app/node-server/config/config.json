@@ -14,8 +14,15 @@
         "caFile": "certs/server.ca-bundle"
     },
     "auth": {
-        "id": "706477281622-fc5smi1o8hhu3kjp94ttfkdbno22tv9d.apps.googleusercontent.com",
-        "secret": "MekxIl70WrvBkW7X5qCJj13F",
-        "callback": "https://soa.servehttp.com/auth/google/callback"
+        "google": {
+            "id": "706477281622-fc5smi1o8hhu3kjp94ttfkdbno22tv9d.apps.googleusercontent.com",
+            "secret": "MekxIl70WrvBkW7X5qCJj13F",
+            "callback": "https://soa.servehttp.com/auth/google/callback"            
+        },
+        "github": {
+            "id": "088435c6236d21c6c4fe",
+            "secret": "05ec9b4f795e229bfa9f72351aaab8ad8e8498ae",
+            "callback": "https://soa.servehttp.com/auth/github/callback"            
+        }
     }
 }
