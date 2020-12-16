@@ -26,7 +26,7 @@ class LocationIqModel:
             time_between_tries (:int, optional): Time between tries to obtain location info.
         
         Returns:
-            :obj:`dict` contanining the information in matter of geocoding of the given place.
+            :obj:`dict`: contanining the information in matter of geocoding of the given place.
 		"""
 
 		for i in range(max_tries+1):

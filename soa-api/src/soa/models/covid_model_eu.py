@@ -18,7 +18,7 @@ class EUCovidExtraction:
             uri (:obj:`str`): dataset's URI.
 
         Returns:
-            :obj:`pd.DataFrame` result from the request, contianing the COVID information worldwide per country.
+            :obj:`pd.DataFrame`: result from the request, contianing the COVID information worldwide per country.
         """
 
         try:

@@ -22,7 +22,7 @@ class TopicModellingExtraction:
         Extracts topics from a text using LDA (Latent Diriechit Allocation) to get themes from main kewyords in multiple documents
         
         Keyword Arguments:
-            num_topics (:obj:`int`, optional) -- number of topics to extract from text (default: {NUM_TOPICS})
+            num_topics (:obj:`int`, optional): number of topics to extract from text (default: {NUM_TOPICS})
         """
         # Create model component handler
         self._lda = LDA(n_components=num_topics)
@@ -35,10 +35,10 @@ class TopicModellingExtraction:
         Processes data and cleans it as entry for the vectorizer
         
         Arguments:
-            text (:obj:`str`) -- text preprocessed 
+            text (:obj:`str`): text preprocessed 
         
         Returns:
-            (:obj:`str`) -- cleaned and postprocessed text
+            :obj:`str`: cleaned and postprocessed text
         """
         # Remove punctuation
         text_processed = re.sub('[,\.!?]', '', text)
@@ -53,7 +53,7 @@ class TopicModellingExtraction:
         Transforms text into a vector of 0s and 1s as entry of the LDA model.
         
         Arguments:
-            text (:obj:`str`) -- text cleaned and postprocessed
+            text (:obj:`str`): text cleaned and postprocessed
         """
         # Fit and transform the processed titles
         vec_data = self._count_vectorizer.fit_transform([text])
@@ -65,8 +65,8 @@ class TopicModellingExtraction:
         Returns the number of topics predicted in the text given.
         
         Arguments:
-            text (:obj:`str`)  -- [description]
-            words_per_topic (:obj:`int`, optional) -- [description] (default: {NUM_WORDS})
+            text (:obj:`str`): text to get topics from
+            words_per_topic (:obj:`int`, optional): number of words to extract per topic (default: {NUM_WORDS})
 
         Return:
             :obj:`dict`: structure containing the list of topics extracted from a text given
@@ -95,9 +95,9 @@ class TopicModellingExtraction:
         Gets number of topics predicted and stores them into a list
         
         Arguments:
-            model -- pretrained LDA model
-            vectorizer -- pretrained Count Vectorizer vectorizer
-            n_top_words (:obj:`int`, optional)  -- number of words to analyze from each topic
+            model: pretrained LDA model
+            vectorizer: pretrained Count Vectorizer vectorizer
+            n_top_words (:obj:`int`, optional): number of words to analyze from each topic
         
         Returns:
             :obj:`list` of :obj:`str`: list of topics extracted

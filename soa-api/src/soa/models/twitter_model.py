@@ -35,16 +35,16 @@ class TwitterExtraction:
         """Retrieve tweets containing a keyword given in a query
         
         Arguments:
-            query {str} -- keyword to find in tweets
+            query (:obj:`str`): keyword to find in tweets
         
         Keyword Arguments:
-            count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
-            lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            count (:obj:`int`, optional): number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
+            lang (:obj:`str`, optional): language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
+            start_date (:obj:`str`, optional): beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date (:obj:`str`, optional): end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
         
         Returns:
-            :obj:`list` -- list of dictionaries containing information about the tweets retrieved
+            :obj:`list` of :obj:`dict`: list of dictionaries containing information about the tweets retrieved
         """
 
         # Empty list to store parsed tweets
@@ -94,17 +94,17 @@ class TwitterExtraction:
         """Retrieve tweets containing a keyword given in a query
         
         Arguments:
-            query {List[str]} -- list to find in tweets
+            query (:obj:`list` of :obj:`str`): list to find in tweets
         
         Keyword Arguments:
-            count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
-            lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            include_both {bool} -- flag indicating if the tweets to retrieve will only contain all the keywords in the query or not (default: {False})
+            count (:obj:`int`, optional): number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
+            lang (:obj:`str`, optional): language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
+            start_date (:obj:`str`, optional): beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date (:obj:`str`, optional): end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            include_both (:obj:`bool`, optional): flag indicating if the tweets to retrieve will only contain all the keywords in the query or not (default: {False})
         
         Returns:
-            :obj:`list` -- list of dictionaries containing information about the tweets retrieved
+            :obj:`list` of :obj:`dict`: list of dictionaries containing information about the tweets retrieved
         """
         multiple_query = ""
         separator = " OR "
@@ -138,16 +138,16 @@ class TwitterExtraction:
         Twitter API to retrieve more tweets and more info
         
         Arguments:
-            query {str} -- list to find in tweets
+            query (:obj:`str`): list to find in tweets
         
         Keyword Arguments:
-            count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
-            lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            count (:obj:`int`, optional): number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
+            lang (:obj:`str`, optional): language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
+            start_date (:obj:`str`, optional): beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date (:obj:`str`, optional): end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
         
         Returns:
-            :obj:`list` -- list of dictionaries containing information about the tweets retrieved
+            :obj:`list` of :obj:`dict`: list of dictionaries containing information about the tweets retrieved
         """
         tweets = []
 
@@ -201,17 +201,17 @@ class TwitterExtraction:
         Twitter API to retrieve more tweets and more info
         
         Arguments:
-            query {List[str]} -- list to find in tweets
+            query (:obj:`list` of :obj:`str`): list to find in tweets
         
         Keyword Arguments:
-            count {int} -- number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
-            lang {str} -- language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
-            start_date {str} -- beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            end_date {str} -- end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            include_both {bool} -- flag indicating if the tweets to retrieve will only contain all the keywords in the query or not (default: {False})
+            count (:obj:`int`, optional): number of tweets to retrieve (default: {DEFAULT_NUM_TWEETS_EXTRACTED})
+            lang (:obj:`str`, optional): language ot the tweets (default: {DEFAULT_TWEETS_LANGUAGE})
+            start_date (:obj:`str`, optional): beginning date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            end_date (:obj:`str`, optional): end date point to retrieve tweets (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            include_both (:obj:`bool`, optional): flag indicating if the tweets to retrieve will only contain all the keywords in the query or not (default: {False})
         
         Returns:
-            :obj:`list` -- list of dictionaries containing information about the tweets retrieved
+            :obj:`list` of :obj:`dict`: list of dictionaries containing information about the tweets retrieved
         """
 
         multiple_query = ""
@@ -240,13 +240,13 @@ class TwitterExtraction:
         """Extracts text from tweet object status
         
         Arguments:
-            obj {dict} -- status with information about a tweet from Twitter API
+            obj (:obj:`dict`): status with information about a tweet from Twitter API
         
         Keyword Arguments:
-            clean_text {bool} -- flag indicating if the text of the tweet must be processed or not (default: {False})
+            clean_text (:obj:`bool`, optional): flag indicating if the text of the tweet must be processed or not (default: {False})
         
         Returns:
-            str -- text of the tweet
+            :obj:`str`: text of the tweet
         """
         text = obj.full_text.encode('utf-8').decode('utf-8')
         if clean_text:
@@ -257,10 +257,10 @@ class TwitterExtraction:
         """Extracts text from tweet object status
         
         Arguments:
-            obj {dict} -- status with information about a tweet from Twitter API
+            obj (:obj:`dict`): status with information about a tweet from Twitter API
         
         Returns:
-            str -- url of the tweet
+            :obj:`str`: url of the tweet
         """
         url = "https://twitter.com/twitter/statuses/" + str(obj.id)
         return url
@@ -269,10 +269,10 @@ class TwitterExtraction:
         """Extracts date and time from tweet object status
         
         Arguments:
-            obj {dict} -- status with information about a tweet from Twitter API
+            obj (:obj:`dict`): status with information about a tweet from Twitter API
         
         Returns:
-            str -- tweet´s publishing date and time
+            :obj:`str`: tweet´s publishing date and time
         """
         return obj.created_at.strftime('%Y-%m-%dT%H:%M:%S')
 
@@ -280,10 +280,10 @@ class TwitterExtraction:
         """Extracts country and city information from tweet object status
         
         Arguments:
-            obj {dict} -- status with information about a tweet from Twitter API
+            obj (:obj:`dict`): status with information about a tweet from Twitter API
         
         Returns:
-            str -- tweet´s location
+            :obj:`str`: tweet´s location
         """
         return obj.geo
 
@@ -291,9 +291,9 @@ class TwitterExtraction:
         """Extracts location coordinates from tweet object status
         
         Arguments:
-            obj {dict} -- status with information about a tweet from Twitter API
+            obj (:obj:`dict`): status with information about a tweet from Twitter API
         
         Returns:
-            str -- tweet´s coordinates in (lat - long) format
+            :obj:`str`: tweet´s coordinates in (lat - long) format
         """
         return obj.coordinates
