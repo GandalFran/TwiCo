@@ -67,11 +67,12 @@ class EUCovidExtraction:
 
         transform_country = lambda x: ' '.join(x.split('_')).replace('(',' ').replace(')',' ')
 
+        print(response)
         return [{
             'date': r['dateRep'].isoformat(),
             'country': transform_country(r['countriesAndTerritories']),
-            'cases': r['cases'],
-            'cases': r['deaths']
+            'cases': r['cases_weekly'],
+            'cases': r['deaths_weekly']
         } for r in response]
     
     def extract(self, from_date=None, to_date=None):
