@@ -19,9 +19,10 @@ class SentimentAnalyzer:
         so that it only contains words and spaces between them.
 
         Args:
-            text: This is the string that contains the tweet received from Twitter
+            text (:obj:`str`): This is the string that contains the tweet received from Twitter
+
         Returns:
-            string: postcleaning text string (only words and spaces)
+            :obj:`str`: postcleaning text string (only words and spaces)
         """
 
         # IMPORTANT: in Spanish sentiment analysis is important to keep ortographic accents
@@ -82,13 +83,13 @@ class SentimentAnalyzer:
         """Sentiment analyzer of text
         
         Arguments:
-            text {str} -- sentence to analyze
+            text (:obj:`str`):sentence to analyze
         
         Keyword Arguments:
-            clean_text {bool} -- flag indicating if the text must be cleaned or not (default: {False})
+            clean_text (:obj:`bool`, optional): flag indicating if the text must be cleaned or not (default: {False})
         
         Returns:
-            str -- sentiment result of the analyzer
+            :obj:`str`: sentiment result of the analyzer
         """
         sentiment_result = ""
 

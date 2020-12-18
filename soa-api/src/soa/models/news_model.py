@@ -23,11 +23,11 @@ class NewsExtraction:
         Retrieve top news in a country specified and containing a keyword given in a query
         
         Arguments:
-            query (:obj:`str`) -- keyword to find in top news
-            country_code (:obj:`str`) -- two letter code to specify the country (default: {DEFAULT_NEWS_COUNTRY})
+            query (:obj:`str`): keyword to find in top news
+            country_code (:obj:`str`): two letter code to specify the country (default: {DEFAULT_NEWS_COUNTRY})
 
         Returns:
-            :obj:`list` -- list of dictionaries containing information about the news retrieved
+            :obj:`list` of :obj:`dict`: list of dictionaries containing information about the news retrieved
         """
 
         # Empty list to store parsed news
@@ -77,14 +77,14 @@ class NewsExtraction:
         Retrieve every news in a range of time, in an specific language and containing in their title a keyword given
         
         Arguments:
-            q (:obj:`str`) -- keyword to find in the title of news
-            from_date (:obj:`str`, optional) -- beginning date point to retrieve news (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            to_date (:obj:`str`, optional) -- end date point to retrieve news (default: {datetime.date.today().strftime('%Y-%m-%d')})
-            lang (:obj:`str`, optional) -- language ot the news (default: {DEFAULT_NEWS_LANGUAGE})
-            count (:obj:`int`, optional) -- number of news to retrieve (default: {DEFAULT_NUM_NEWS_EXTRACTED})
+            q (:obj:`str`): keyword to find in the title of news
+            from_date (:obj:`str`, optional): beginning date point to retrieve news (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            to_date (:obj:`str`, optional): end date point to retrieve news (default: {datetime.date.today().strftime('%Y-%m-%d')})
+            lang (:obj:`str`, optional): language ot the news (default: {DEFAULT_NEWS_LANGUAGE})
+            count (:obj:`int`, optional): number of news to retrieve (default: {DEFAULT_NUM_NEWS_EXTRACTED})
 
         Returns:
-            :obj:`list` -- list of dictionaries containing information about the news retrieved
+            :obj:`list` of :obj:`dict`: list of dictionaries containing information about the news retrieved
         """
 
         # Empty list to store parsed news
@@ -128,10 +128,10 @@ class NewsExtraction:
         Write title in the proper format
         
         Arguments:
-            title (:obj:`str`) -- title to be formatted
+            title (:obj:`str`): title to be formatted
 
         Returns:
-            :obj:`str` title with the proper format
+            :obj:`str`: title with the proper format
         """
 
         title_list = []
@@ -150,10 +150,10 @@ class NewsExtraction:
         Write date in the proper format
         
         Arguments:
-            date_hour (:obj:`str`) -- date to be formatted
+            date_hour (:obj:`str`): date to be formatted
 
         Returns:
-            :obj:`str` date with the proper format
+            :obj:`str`: date with the proper format
         """
 
         date_list = []
@@ -172,10 +172,10 @@ class NewsExtraction:
         Processes data and cleans it as entry for the vectorizer
         
         Arguments:
-            text (:obj:`str`) -- text preprocessed 
+            text (:obj:`str`): text preprocessed 
         
         Returns:
-            (:obj:`str`) -- cleaned and postprocessed text
+            :obj:`str`: cleaned and postprocessed text
         """
         if text is not None:
             # Remove punctuation

@@ -8,21 +8,6 @@ from flask_restx import fields
 
 from soa.run import api
 
-tweet_model = api.model("Tweet information", {
-    'url': fields.String(example='https://twitter.com/NASA/status/967824267948773377', description='URL to the tweet'),
-    'text': fields.String(example='This is a tweet about COVID #covid-19', description='Text of the tweet extracted'),
-    'sentiment': fields.String(example='positive', description='Sentiment result of text analysis'),
-}, description='Information of Tweet data in the API.')
-
-topics_model_2 = api.model("Topics subinformation", {
-    'name': fields.String(example='covid AND christmas AND famous', description='Theme or topic of the tweets extracted'),
-    'tweets': fields.Nested(tweet_model, description='Tweets retrieved from the topics given.', as_list=True)
-}, description='Information of Topics subdata in the API.')
-
-topics_model_1 = api.model("Topics main information", {
-    't1': fields.Nested(topics_model_2, description='Tweets retrieved from the topics given.', as_list=True)
-}, description='Information of Topics main data in the API.')
-
 source_model = api.model("Source News information", {
     'id': fields.String(example='usa-today', description='Id of the newspaper source of the news.'),
     'name': fields.String(example='USA Today', description='Name of the newspaper source of the news.')
