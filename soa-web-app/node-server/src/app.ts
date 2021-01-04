@@ -137,7 +137,6 @@ export class Application {
         
         this.application.use((request, response, next) => {
             if (!request.session.user && request.path.match(/\/data\/.*/)) {
-                next();
                 response.status(STATUS_FORBIDDEN);
                 response.send();
             }else{

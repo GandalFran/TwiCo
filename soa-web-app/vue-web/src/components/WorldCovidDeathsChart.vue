@@ -39,14 +39,14 @@ export default {
 				return{
 					date: new Date(e.date),
 					deaths: Math.ceil( (e.cases / 11) * 0.1), // yes, this is harcoded (at last moment there wasn't available data), i'm sorry :(
-					country: e.location.address.country.toUpperCase(),
-					id: e.location.address.country_code.toUpperCase()
+					country: e.location.address.country,
+					id: e.location.address.country_code
 				};
 			});
 
 			// filter data
 			var targetdate = new Date()
-			targetdate.setDate(targetdate.getDate() - 1);
+			targetdate.setMonth(targetdate.getMonth() - 2);
 			data = data.filter(function(e){
 				return (e.id !== null && e.deaths !== null && e.date >= targetdate);
 			})

@@ -39,17 +39,17 @@ export default {
 				return{
 					date: new Date(e.date),
 					cases: e.cases,
-					country: e.location.address.country.toUpperCase(),
-					id: e.location.address.country_code.toUpperCase()
+					country: e.location.address.country,
+					id: e.location.address.country_code
 				};
 			});
 
 			// filter data
 			var targetdate = new Date()
-			targetdate.setDate(targetdate.getDate() - 1);
+			targetdate.setMonth(targetdate.getMonth() - 2);
 			data = data.filter(function(e){
-				return (e.id !== null && e.cases !== null && e.date >= targetdate);
-			})
+				return (e.id !== null && e.cases !== null && e.date >= targetdate && e.country !== null);
+			});
 
 			// prepare iso code
 			data.forEach(function(e){
