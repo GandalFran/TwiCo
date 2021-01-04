@@ -39,8 +39,8 @@ export default {
 				return{
 					date: new Date(e.date),
 					cases: e.cases,
-					country: e.location.address.country,
-					id: e.location.address.country_code
+					country: e.location.address.country.toUpperCase(),
+					id: e.location.address.country_code.toUpperCase()
 				};
 			});
 
