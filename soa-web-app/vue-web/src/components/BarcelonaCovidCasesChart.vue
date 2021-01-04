@@ -93,10 +93,9 @@ export default {
 				
 				// filter data
 				var targetdate = new Date()
-				targetdate.setDate(targetdate.getDate() - 1);
+				targetdate.setMonth(targetdate.getMonth() - 2);
 				mappedData = mappedData.filter(function(e){
-					return true;
-					//return (e.date >= targetdate);
+					return (e.date >= targetdate);
 				})
 				
 				var geojsonSeries = this.seriesToGeoJson(mappedData);
