@@ -107,9 +107,5 @@ class EUCovidExtraction:
         if df is not None:
             df = self._filter_dates(df, from_date, to_date)
             data = self._format_response(df)
-        
-        if data is None or not data:
-            with open('/etc/eu_data.json','r') as f:
-                data = json.loads(f.read())
 
         return data
