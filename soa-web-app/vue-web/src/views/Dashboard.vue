@@ -160,7 +160,7 @@ export default {
 			axios.post(uri, {}).then(response => {
 				const isLoggedIn = response.data.auth;
 				if(isLoggedIn === false){
-					// this.$router.push('forbidden');
+					this.$router.push('forbidden');
 				}
 			}).catch(e => { console.log(e); });
 		},
