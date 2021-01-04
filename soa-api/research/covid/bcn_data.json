@@ -1,0 +1,513 @@
+[
+   {
+      "cases":"44",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Can Baró",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"151",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Raval",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"42",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Barri Gòtic",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"49",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Barceloneta",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"51",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sant Pere, Santa Caterina i la Ribera",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"121",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Fort Pienc",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"267",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Sagrada Família",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"202",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Dreta de l'Eixample",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"146",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"l'Antiga Esquerra de l'Eixample",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"327",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Nova Esquerra de l'Eixample",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"238",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sant Antoni",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"142",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Poble Sec",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"9",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Marina del Prat Vermell",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"175",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Marina de Port",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"67",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Font de la Guatlla",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"100",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Hostafrancs",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"100",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Bordeta",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"124",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sants - Badal",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"186",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sants",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"185",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"les Corts",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"97",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Maternitat i Sant Ramon",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"30",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Pedralbes",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"13",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Vallvidrera, el Tibidabo i les Planes",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"69",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sarrià",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"41",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"les Tres Torres",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"74",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sant Gervasi - la Bonanova",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"128",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sant Gervasi - Galvany",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"79",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Putxet i el Farró",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"54",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Vallcarca i els Penitents",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"19",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Coll",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"80",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Salut",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"215",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Vila de Gràcia",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"172",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Camp d'en Grassot i Gràcia Nova",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"142",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Baix Guinardó",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"238",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Guinardó",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"57",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Font d'en Fargues",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"198",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Carmel",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"54",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Teixonera",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"49",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sant Genís dels Agudells",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"59",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Montbau",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"63",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Vall d'Hebron",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"1",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Clota",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"209",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Horta",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"181",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Vilapicina i la Torre Llobeta",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"197",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Porta",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"100",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Turó de la Peira",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"10",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Can Peguera",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"133",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Guineueta",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"53",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Canyelles",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"134",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"les Roquetes",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"106",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Verdun",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"182",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Prosperitat",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"55",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Trinitat Nova",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"10",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Torre Baró",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"62",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Ciutat Meridiana",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"5",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Vallbona",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"74",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Trinitat Vella",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"10",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Baró de Viver",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"65",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Bon Pastor",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"348",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sant Andreu",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"142",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Sagrera",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"84",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Congrés i els Indians",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"134",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Navas",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"235",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Camp de l'Arpa del Clot",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"122",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Clot",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"58",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Parc i la Llacuna del Poblenou",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"35",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Vila Olímpica del Poblenou",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"130",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Poblenou",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"51",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Diagonal Mar i el Front Marítim del Poblenou",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"99",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"el Besòs i el Maresme",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"97",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Provençals del Poblenou",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"108",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"Sant Martí de Provençals",
+      "source":"Agència de Salut Pública de Barcelona"
+   },
+   {
+      "cases":"150",
+      "city":"Barcelona",
+      "date":"2021-01-13T00:00:00",
+      "neighborhood":"la Verneda i la Pau",
+      "source":"Agència de Salut Pública de Barcelona"
+   }
+]
