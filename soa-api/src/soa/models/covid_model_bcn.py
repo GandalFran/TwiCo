@@ -108,7 +108,7 @@ class BarcelonaCKANCovidExtractor:
 
         uri = self._build_uri(from_date, to_date)
         data = self._do_request(uri)
-        if data or data is not None:
+        if data and data is not None:
             data = self._format_response(data)
         else:
             with open('/etc/bcn_data.json','r') as f:
