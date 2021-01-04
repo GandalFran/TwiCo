@@ -39,8 +39,8 @@ export default {
 				return{
 					date: new Date(e.date),
 					deaths: Math.ceil( (e.cases / 11) * 0.1), // yes, this is harcoded (at last moment there wasn't available data), i'm sorry :(
-					country: e.location.address.country,
-					id: e.location.address.country_code
+					country: e.location.address.country.toUpperCase(),
+					id: e.location.address.country_code.toUpperCase()
 				};
 			});
 
