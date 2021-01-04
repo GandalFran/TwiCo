@@ -3,6 +3,7 @@
 # Copyright 2020 Luis Blazquez Miñambres (@luisblazquezm), Miguel Cabezas Puerto (@MiguelCabezasPuerto), Óscar Sánchez Juanes (@oscarsanchezj) and Francisco Pinto-Santos (@gandalfran)
 # See LICENSE for details.
 
+import json
 import datetime
 import pandas as pd
 
@@ -67,7 +68,6 @@ class EUCovidExtraction:
 
         transform_country = lambda x: ' '.join(x.split('_')).replace('(',' ').replace(')',' ')
 
-        print(response)
         return [{
             'date': r['dateRep'].isoformat(),
             'country': transform_country(r['countriesAndTerritories']),
@@ -107,5 +107,10 @@ class EUCovidExtraction:
         if df is not None:
             df = self._filter_dates(df, from_date, to_date)
             data = self._format_response(df)
+        
+        data = None
+        if data is None or not data:
+            with open('/etc/eu_data.json','r') as f:
+                data = json.loads(f.read())
 
         return data

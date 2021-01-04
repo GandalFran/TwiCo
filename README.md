@@ -12,6 +12,7 @@ Twico, is the final project for the SOA subject of the Computer Science Master's
 ## Current deployments
 - web: https://soa.servehttp.com
 - api: http://soa.servehttp.com:5000/soa/v1/
+- pm2 monitor: https://app.pm2.io/bucket/5ff2f7d6a523016b6fa70bca/backend/overview/servers
 
 <img src="https://github.com/GandalFran/soa-final/blob/master/soa-web-app/vue-web/public/img/twico.PNG" align="center">
 <img src="https://github.com/GandalFran/TwiCo/blob/master/soa-web-app/vue-web/public/img/dashboard.png" align="center">
